@@ -13,7 +13,8 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 import { PageRoutes } from './Routes/PageRoutes';
 import PlacesFormPage from './pages/PlacesFormPage'
 import { AppConsts } from './Routes/AppConsts';
-import Popup from './Popup/Popup';
+// import Popup from './Popup/Popup';
+import Home from './Home';
 
 axios.defaults.baseURL = AppConsts.ServerAddress;
 
@@ -44,7 +45,7 @@ function App() {
           {/* <Route path="/account/places" element={<PlacesPage />} /> */}
           <Route path={PageRoutes.AccountSubpageAction} element={<PlacesFormPage />} />
           <Route path={PageRoutes.PlaceById} element={<PlacePage />} />
-          <Route path={PageRoutes.Search} element={<Popup />} />
+          <Route path={PageRoutes.Search} element={<Home />} />
         </Route>
 
         <Route>

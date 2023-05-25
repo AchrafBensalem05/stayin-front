@@ -1,3 +1,84 @@
+.cc{
+  height: 100%;
+  width: 100%;
+  filter: brightness(60%);
+
+}
+.background{
+  height: 480px;
+  width: 100%;
+  
+}
+.content{
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.ch{
+  font-size: 50px;
+}
+.search{
+  margin-top: 40px;
+}
+.signin{
+  background-image: linear-gradient(to right, #00cEE0, #02b4c4);
+  transition: background-color 0.3s ease;
+  border-radius: 10px;
+}
+.signin:hover{
+  background-image: linear-gradient(to right, #0295a3, #0295a3);    
+}
+.containers{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+}
+.vertical-divider {
+  margin: 0 10px;
+  border-left: 2px solid #02b4c4;
+}
+.selecthome{
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  color: black;
+  padding-left: 1rem;
+  &::focus{
+      outline: none;
+  }
+}
+.inpute{
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  color: black;
+  &[type="date"]{
+      padding-left: 1rem;
+  }
+  &::placeholder{
+      color: black;
+  }
+  &::focus{
+      outline: none;
+  }
+}
+.labele{
+  font-size: 20px;
+  font-weight: 600;
+  
+}
+.signup{
+  
+  box-shadow: inset 0 0 0 2px #00cEE0, inset 0 0 0 2px #02b4c4;
+
+}
+.signup:hover{
+  box-shadow: inset 0 0 0 2px #008d9a, inset 0 0 0 2px #028e9b;
+  transition: background-color 2s ease;
+}
+
 .App {
   text-align: center;
 }
