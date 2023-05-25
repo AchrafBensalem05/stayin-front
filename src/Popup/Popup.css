@@ -1,0 +1,22 @@
+.divider {
+    border-top: 2px dashed;
+    opacity: 10%;
+    margin: 20px 0;
+  }
+  .btnp{
+    background-image: linear-gradient(to right, #00cEE0, #02b4c4);
+    transition: background-color 0.3s ease;
+    border: none;
+    padding: 3px ;
+    border-radius: 10px;
+
+}
+.btnp:hover{
+    background-image: linear-gradient(to right, #0295a3, #0295a3); 
+
+}
+h3{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 22px;
+}
+

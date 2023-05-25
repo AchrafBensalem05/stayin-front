@@ -12,5 +12,6 @@ export class PageRoutes{
     static AccountBookings = "/account/bookings";
     static AccountBookingById = "/account/bookings/:id";
     static AccountSubpageAction = "/account/:subpage/:action";
+    static Search = "/search"
 
 }

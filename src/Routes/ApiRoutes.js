@@ -11,6 +11,7 @@ export class ApiRoutes {
     static ReservationGetPlaces = "/ms-reservation/places/{id}";
     static CreateReservationForAppartement = "ms-reservation/reservation/createReservation/{id}"
     
+    
     static GetPlaceById = "/places/{id}";
     static GetAllPlaces = "/places/all";
     static AddPlace = "/places";
