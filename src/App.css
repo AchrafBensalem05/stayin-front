@@ -1,4 +1,12 @@
-.cc{
+/* Start of code that is messing up the login and signup page */
+
+
+/* Need to take care of calsses like the .content one,
+ that is used both by me and islam, so i can fix the login/signup page,
+ and fix the invalid scss code in the css 
+ */
+
+ .cc{
   height: 100%;
   width: 100%;
   filter: brightness(60%);
@@ -117,6 +125,16 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+/* End of code that is messing up the login and signup page */
+
+
+
+
+
+
 
 /* Login page styles */
 
