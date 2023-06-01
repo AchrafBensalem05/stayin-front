@@ -8,7 +8,7 @@ function Home() {
         <div className='background ' >
             <img src={logoo} alt="" className="cc" fluid />
         </div>
-        <div className='content position-absolute d-flex flex-column justify-content-center align-items-center'>
+        <div className='search-content position-absolute d-flex flex-column justify-content-center align-items-center'>
             <div className='title'>
                 <h1 className="text-light ch">Choose your dream home</h1>
             </div>

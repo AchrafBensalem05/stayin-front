@@ -1,11 +1,3 @@
-/* Start of code that is messing up the login and signup page */
-
-
-/* Need to take care of calsses like the .content one,
- that is used both by me and islam, so i can fix the login/signup page,
- and fix the invalid scss code in the css 
- */
-
  .cc{
   height: 100%;
   width: 100%;
@@ -17,7 +9,7 @@
   width: 100%;
   
 }
-.content{
+ .search-content{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -53,25 +45,27 @@
   text-align: center;
   color: black;
   padding-left: 1rem;
-  &::focus{
-      outline: none;
-  }
+}
+.selecthome:focus{
+  outline: none;
 }
 .inpute{
   background-color: transparent;
   border: none;
   text-align: center;
   color: black;
-  &[type="date"]{
-      padding-left: 1rem;
-  }
-  &::placeholder{
-      color: black;
-  }
-  &::focus{
-      outline: none;
-  }
 }
+.inpute[type="date"]{
+  padding-left: 1rem;
+}
+.inpute::placeholder{
+  color: black;
+}
+.inpute:focus{
+  outline: none;
+}
+
+
 .labele{
   font-size: 20px;
   font-weight: 600;
@@ -125,12 +119,6 @@
     transform: rotate(360deg);
   }
 }
-
-
-
-/* End of code that is messing up the login and signup page */
-
-
 
 
 
