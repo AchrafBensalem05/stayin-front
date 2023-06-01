@@ -12,10 +12,10 @@ export class ApiRoutes {
     static CreateReservationForAppartement = "ms-reservation/reservation/createReservation/{id}"
     
     
-    static GetPlaceById = "/places/{id}";
-    static GetAllPlaces = "/places/all";
-    static AddPlace = "/places";
-    static Profile = "/profile";
+    static GetPlaceById = "/appartement/places/{id}";
+    static GetAllPlaces = "/appartement/places/all";
+    static AddPlace = "/appartement/places";
+    static Profile = "/appartement/profile";
 
 
 
