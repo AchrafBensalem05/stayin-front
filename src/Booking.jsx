@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import { differenceInCalendarDays } from "date-fns";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
@@ -11,6 +11,7 @@ import 'react-date-range/dist/theme/default.css';
 import { AppConsts } from "./Routes/AppConsts";
 import { ApiRoutes } from "./Routes/ApiRoutes";
 import { PageRoutes } from "./Routes/PageRoutes";
+import io from "socket.io-client";
 
 export default function Booking() {
 
@@ -19,7 +20,7 @@ export default function Booking() {
     var body = JSON.parse(atob(token.split('.')[1]));
     return body.nameid;
   }
-  console.log('user' + GetUserId())
+  // console.log('user' + GetUserId())
 
 
   const [checkIn, setCheckIn] = useState('');
@@ -32,10 +33,26 @@ export default function Booking() {
   const [message, setMessage] = useState('');
   const [price, setPrice] = useState('');
 
+
+ /*  const [socket, setSocket] = useState(); 
+ 
+  useEffect(() => { 
+    setSocket(io("http://localhost:8800")); 
+  }, []); 
+ 
+ 
+  
+  useEffect(() => { 
+      socket?.on('customEvent', (data) => {
+      console.log('Received custom event:', data);
+  }, [socket])
+}
+  );
+ */
   const queryParameters = new URLSearchParams(window.location.search)
   // const AppartementId = queryParameters.get("id") 
   const { id } = useParams();
-  console.log(id)
+  // console.log(id)
 
   axios.defaults.baseURL = AppConsts.ServerAddress;
 
@@ -83,7 +100,7 @@ export default function Booking() {
   //   console.log(appartement)
   axios.post("")
   //  const reservedDates = appartement.reservedDates;
-  console.log(reservedDates);
+ // console.log(reservedDates);
 
   /* const formattedDates = reservedDates.map((isoDate) => {
    const date = new Date(isoDate);
@@ -118,7 +135,7 @@ export default function Booking() {
 
 
   async function bookThisPlace() {
-
+    const user=GetUserId();
 
     setIsLoading(true);
 
@@ -158,7 +175,7 @@ export default function Booking() {
   }
 
 
-  console.log(new Date('2023-06-12'));
+  // console.log(new Date('2023-06-12'));
 
   return (
     <div>
