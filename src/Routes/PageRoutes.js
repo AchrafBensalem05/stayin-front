@@ -14,4 +14,6 @@ export class PageRoutes{
     static AccountSubpageAction = "/account/:subpage/:action";
     static Search = "/search"
 
+    static UsersDashboard = "/dashboard/users"
+
 }
