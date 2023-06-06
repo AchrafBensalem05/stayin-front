@@ -11,7 +11,7 @@ import 'react-date-range/dist/theme/default.css';
 import { AppConsts } from "./Routes/AppConsts";
 import { ApiRoutes } from "./Routes/ApiRoutes";
 import { PageRoutes } from "./Routes/PageRoutes";
-import io from "socket.io-client";
+
 
 export default function Booking() {
 
@@ -21,7 +21,9 @@ export default function Booking() {
     return body.nameid;
   }
   // console.log('user' + GetUserId())
-
+  
+  const user=GetUserId();
+  console.log(user)
 
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
@@ -76,12 +78,39 @@ export default function Booking() {
     numberOfNights = differenceInCalendarDays(new Date(date[0].startDate), new Date(date[0].endDate));
   }
 
-
-  try {
+ 
+  /* try {
     
     axios.get(ApiRoutes.GetAppartementById.replace("{id}", id)).then(async (response) => {
       setAppartement(response.data)
+      console.log(appartement)
       const reservedDates = await appartement.reservedDates;
+     // console.log("reserve"+reservedDates);
+      setPrice(numberOfNights * appartement.price);
+      /*  for (let i = 0; i < reservedDates.length; i++) {
+           const date=new Date(reservedDates[i])
+           const dateString= date.toLocaleDateString();
+        
+       };  
+      setReservedDates(reservedDates);
+    //  console.log("appartement"+appartement)
+   
+    });
+
+
+
+  } catch (error) {
+
+  } */
+     useEffect(() => { 
+ 
+  
+    
+    axios.get(ApiRoutes.GetAppartementById.replace("{id}", id)).then(async (response) => {
+      setAppartement(response.data)
+      console.log(appartement)
+      const reservedDates = await appartement.reservedDates;
+     // console.log("reserve"+reservedDates);
       setPrice(numberOfNights * appartement.price);
       /*  for (let i = 0; i < reservedDates.length; i++) {
            const date=new Date(reservedDates[i])
@@ -89,43 +118,30 @@ export default function Booking() {
         
        };  */
       setReservedDates(reservedDates);
-
+    //  console.log("appartement"+appartement)
+   
     });
+     }, []);
+   
+
+   const reservedDate = appartement.reservedDates;
+    console.log(reservedDate);
+   
+
+  
+
+    
 
 
+    if (reservedDate) {
+      var dateObjects = reservedDate.map((reservedDate) => new Date(reservedDate));
+     // console.log(dateObjects);
+  
+    } else {
+      console.log("The dates array is undefined.");
+    }
 
-  } catch (error) {
-
-  }
-  //   console.log(appartement)
-  axios.post("")
-  //  const reservedDates = appartement.reservedDates;
- // console.log(reservedDates);
-
-  /* const formattedDates = reservedDates.map((isoDate) => {
-   const date = new Date(isoDate);
- 
-   const options = {
-     weekday: "short",
-     month: "short",
-     day: "2-digit",
-     year: "numeric",
-     hour: "2-digit",
-     minute: "2-digit",
-     second: "2-digit",
-     timeZoneName: "long"
-   };
- 
-   return date.toLocaleString("en-US", options);
- });
- 
- console.log(formattedDates); */
-
-
-
-
-
-
+    console.log(dateObjects);
   /*   const isDateDisabled = (date) => {
       return reservedDates.includes(date);
     }; */
@@ -136,7 +152,7 @@ export default function Booking() {
 
   async function bookThisPlace() {
     const user=GetUserId();
-
+    
     setIsLoading(true);
 
     try {
@@ -149,12 +165,12 @@ export default function Booking() {
         phone: phone,
         email: email,
         price: price,
-        user: '644b00f26adfdd50acfb1324',
+        user: user,
         reserved: false,
         //  reservedDates:["2023-05-03" , "2023-05-04", "2023-05-05"],
 
 
-        // price:numberOfNights* 250,
+      
 
       });
       const bookingId = response.data._id;
@@ -175,12 +191,16 @@ export default function Booking() {
   }
 
 
-  // console.log(new Date('2023-06-12'));
+  console.log(new Date('2023-06-12'));
+ 
 
   return (
     <div>
-
+      
       <div className="bg-white py-32 px-64 shadow  rounded-2xl" >
+      <div>
+        <p className="text-center text-blue-700 text-base"> Reservation request</p> 
+        </div>
         <div className="text-2xl text-center"  >
           price per night : {appartement.price}
         </div>
@@ -201,15 +221,17 @@ export default function Booking() {
                                 selectedRange={selectedRange}
                                setSelectedRange={setSelectedRange}  
                              />  */}
+                            
           <div className=" py-4 px-4 ml-32 border-t ">
-
+           
             <DateRange
               editableDateInputs={true}
               onChange={(item) => setDate([item.selection])}
               moveRangeOnFirstSelection={false}
               ranges={date}
-              // disabledDates={isDateDisabled}
-              disabledDates={[new Date('2023-06-20'), new Date('2023-06-21')]}
+              disabledDates={dateObjects}
+
+            // disabledDates={[new Date('2023-06-20'), new Date('2023-06-21')]}
               className="date"
               minDate={new Date()}
             />
@@ -217,21 +239,21 @@ export default function Booking() {
 
           <div className=" py-4 px-4 border-t ">
             <label>Number of guests :</label>
-            <input type="number" value={numberOfGuests} onChange={ev => setNumberOfGuests(ev.target.value)} />
+            <input type="number" className="w-full border my-1 py-2 px-3 rounded-2xl" value={numberOfGuests} onChange={ev => setNumberOfGuests(ev.target.value)} />
           </div>
 
 
           <div className="py-3 px-4 border-t">
             <label>Your full name:</label>
-            <input type="text"
+            <input type="text"  className="w-full border my-1 py-2 px-3 rounded-2xl"
               value={name}
               onChange={ev => setName(ev.target.value)} />
             <label>Phone number:</label>
-            <input type="tel"
+            <input type="tel" className="w-full border my-1 py-2 px-3 rounded-2xl"
               value={phone}
               onChange={ev => setPhone(ev.target.value)} />
             <label>email:</label>
-            <input type="email"
+            <input type="email" className="w-full border my-1 py-2 px-3 rounded-2xl"
               value={email}
               onChange={ev => setEmail(ev.target.value)} />
 
