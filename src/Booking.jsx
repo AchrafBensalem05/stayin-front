@@ -75,7 +75,8 @@ export default function Booking() {
 
   let numberOfNights = 0;
   if (date[0].startDate && date[0].endDate) {
-    numberOfNights = differenceInCalendarDays(new Date(date[0].startDate), new Date(date[0].endDate));
+    numberOfNights = differenceInCalendarDays(new Date(date[0].endDate), new Date(date[0].startDate));
+    console.log(numberOfNights)
   }
 
  
@@ -115,8 +116,9 @@ export default function Booking() {
       /*  for (let i = 0; i < reservedDates.length; i++) {
            const date=new Date(reservedDates[i])
            const dateString= date.toLocaleDateString();
-        
+      
        };  */
+      console.log(price)
       setReservedDates(reservedDates);
     //  console.log("appartement"+appartement)
    
@@ -164,7 +166,7 @@ export default function Booking() {
         name: name,
         phone: phone,
         email: email,
-        price: price,
+        price: numberOfNights * appartement.price,
         user: user,
         reserved: false,
         //  reservedDates:["2023-05-03" , "2023-05-04", "2023-05-05"],
