@@ -15,4 +15,6 @@ export class PageRoutes{
     static Search = "/search";
     static ProfilePlaces ="/account/places"
 
+    static UsersDashboard = "/dashboard/users"
+
 }
