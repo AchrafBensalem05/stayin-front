@@ -1,10 +1,30 @@
-import './App.css';
-import logoo from './beach.png';
+import '../App.css';
+import logoo from '../beach.png';
 import Button from 'react-bootstrap/Button';
 import { AiOutlineFilter } from 'react-icons/ai';
+import IndexPage from "./IndexPage";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {Link} from "react-router-dom";
+import Image from "../Image.jsx";
+import { AppConsts } from "../Routes/AppConsts";
+import { ApiRoutes } from "../Routes/ApiRoutes";
+import { PageRoutes } from "../Routes/PageRoutes.js";
+
+
+
+
+
+
+///get user id///////////
+
+
+
+
 function Home() {
-  return (
-    <div className='section position-relative'>
+return (
+    <div className='section'>
+        <div>
         <div className='background ' >
             <img src={logoo} alt="" className="cc" fluid />
         </div>
@@ -60,9 +80,9 @@ function Home() {
                 <Button data-toggle="modal" data-target=".bd-example-modal-lg" variant="" className="d-flex justify-content-center align-items-center mx-2 mt-3 signup text-dark"> <AiOutlineFilter  style={{ marginRight: '0.5rem' }} />Filter</Button>   
             </div>
         </div>
-    </div>
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+       </div>
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-lg">
      <div className="bg-light modal-content">
         <div class="container">
             <div class="container">
@@ -202,10 +222,21 @@ function Home() {
             </div>
         </div>
      </div>
-  </div>
-</div>
+      </div>
+ </div>
+ </div>
+ 
+ <IndexPage/>
+
+
     </div>
     
+
+
+
+
+
+
   );
 }
 
