@@ -6,9 +6,22 @@ import { AppConsts } from "../Routes/AppConsts";
 import { ApiRoutes } from "../Routes/ApiRoutes";
 import { PageRoutes } from "../Routes/PageRoutes.js";
 
+
 axios.defaults.baseURL = AppConsts.ServerAddress;
 
 export default function IndexPage() {
+
+///get user id///////////
+
+function GetUserId(){
+  var token = localStorage.getItem(AppConsts.JwtTokenKey);
+  var body = JSON.parse(atob(token.split('.')[1]));
+  return body.nameid;
+}
+console.log('user '+GetUserId())
+
+
+
   const [places,setPlaces] = useState([]);
   useEffect(() => {
     axios.get(ApiRoutes.GetAllPlaces).then(response => {

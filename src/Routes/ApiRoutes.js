@@ -16,7 +16,8 @@ export class ApiRoutes {
     static GetAllPlaces = "/appartement/places/all";
     static AddPlace = "/appartement/places";
     static Profile = "/appartement/profile";
-
-
+    static UserPlaces = "/appartement/user-places/{owner}";
+    static FeedBack= "/appartement/feedBack";
+    static FeedBackById= "/appartement/feedBack/{id}";
 
 }

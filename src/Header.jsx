@@ -22,7 +22,7 @@ const NavBar = () => {
           <Link to={PageRoutes.NewPlace}><h6 className="font-weight-bold">New Place</h6></Link>
           </Nav.Link>
           <Nav.Link  className="mx-5  ">
-            <Link to={PageRoutes.Account}><h6 className="font-weight-bold">Account</h6></Link>
+            <Link to={PageRoutes.AccountPlaces}><h6 className="font-weight-bold">Account</h6></Link>
           </Nav.Link>
           <Button variant="primary " className="mx-2 signin" ><Link to={PageRoutes.Login}> sign in </Link></Button>
           <Button variant="outline-" className="mx-2 signup"><Link to={PageRoutes.SignUp}> sign up</Link></Button>
