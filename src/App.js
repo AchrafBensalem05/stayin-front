@@ -15,8 +15,6 @@ import PlacesFormPage from './pages/PlacesFormPage'
 import PlacesPage from './pages/PlacesPage'
 import UsersDashboardPage from './pages/UsersDashboard'
 import { AppConsts } from './Routes/AppConsts';
-import PlacesPage from './pages/PlacesPage';
-import UsersDashboardPage from './pages/UsersDashboard'
 // import Popup from './Popup/Popup';
 import Home from './Home';
 
@@ -45,9 +43,8 @@ function App() {
           <Route path={PageRoutes.AccountBookingById} element={<BookingPage />} />
           <Route path={PageRoutes.BookingById} element={<Booking />} />
           <Route path={PageRoutes.AccountBookings} element={<BookingsPage />} />
-          <Route path={PageRoutes.Account} element={<ProfilePage />} />
          <Route path={PageRoutes.UserPlaces } element={<PlacesPage/>}/>
-          <Route path={PageRoutes.AccountSubpageAction} element={<PlacesFormPage />} />
+          <Route path={PageRoutes.NewPlace} element={<PlacesFormPage />} />
           <Route path={PageRoutes.PlaceById} element={<PlacePage />} />
           <Route path={PageRoutes.Search} element={<Home />} />
           <Route path={PageRoutes.UsersDashboard} element={<UsersDashboardPage />} /> 
