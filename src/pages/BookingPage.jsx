@@ -4,16 +4,17 @@ import axios from "axios";
 import BookingDates from "../BookingDates";
 import { ApiRoutes } from "../Routes/ApiRoutes";
 import { AppConsts } from "../Routes/AppConsts";
-
+import { Navigate } from "react-router-dom";
 axios.defaults.baseURL = AppConsts.ServerAddress;
 
 export default function BookingPage() {
   const {id} = useParams();
   const [reservation,setReservation] = useState(null);
+  const [redirect, setRedirect] = useState('');
   useEffect(() => {
     if (id) {
       axios.get(ApiRoutes.GetReservations).then(response => {
-        const foundBooking = response.data.find(({_id}) => _id === id);
+        var foundBooking = response.data.find(({_id}) => _id === id);
         if (foundBooking) {
           setReservation(foundBooking);
         }
@@ -23,6 +24,34 @@ export default function BookingPage() {
 
   if (!reservation) {
     return '';
+  }
+  const idreservation =reservation._id
+  const price =reservation.price
+  const user= reservation.user
+  async function payForThisPlace(){
+    const response = await axios.post(ApiRoutes.Paid , {
+      //appartement:id,
+    
+     price:price,
+     payerId:user,
+     CurrencyCode: "USD",
+     PaymentDate: new Date(),
+     ReservationId: idreservation,
+   /*   CancelUrl: cancelUrl,
+     ReturnUrl: returnUrl, */
+      //  reservedDates:["2023-05-03" , "2023-05-04", "2023-05-05"],
+
+
+      
+
+    });
+    const approveLink = response.data.approveLink;
+      setRedirect(approveLink);
+
+    
+  }
+  if (redirect) {
+    return <Navigate to={redirect} />
   }
 
   return (
@@ -34,6 +63,8 @@ export default function BookingPage() {
     <div className="bg-primary p-6 text-white rounded-2xl">
       <div>Total price</div>
       <div className="text-3xl">${reservation.price}</div>
+      <button className="primary mt-4" onClick={payForThisPlace}>
+      Pay</button>
     </div>
   </div>
 

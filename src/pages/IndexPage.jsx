@@ -28,6 +28,10 @@ console.log('user '+GetUserId())
       setPlaces(response.data);
     });
   }, []);
+
+  
+
+
   return (
     <div>
    

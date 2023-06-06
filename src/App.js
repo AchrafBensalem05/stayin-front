@@ -16,7 +16,7 @@ import PlacesPage from './pages/PlacesPage'
 import UsersDashboardPage from './pages/UsersDashboard'
 import { AppConsts } from './Routes/AppConsts';
 // import Popup from './Popup/Popup';
-import Home from './Home';
+import Home from './pages/Home';
 
 axios.defaults.baseURL = AppConsts.ServerAddress;
 
