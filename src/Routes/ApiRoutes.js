@@ -12,6 +12,8 @@ export class ApiRoutes {
     static ReservationGetPlaces = "/ms-reservation/places/{id}";
     static CreateReservationForAppartement = "/ms-reservation/reservation/createReservation/{id}"
     
+
+    static Paid= "/payment/create/order"
     
     static GetPlaceById = "/appartement/places/{id}";
     static GetAllPlaces = "/appartement/places/all";
