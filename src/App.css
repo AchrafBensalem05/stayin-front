@@ -651,6 +651,8 @@
    box-shadow: 1px 1px 5px 1px rgba(141, 141, 141, 0.423);
    z-index: 5;
    padding: 8px 16px;
+   max-height: 300px;
+   overflow-y: scroll;
  }
 
  .notification-container>div {
@@ -678,5 +680,5 @@
    font-weight: 700 !important;
    color: #00CEE0;
  }
-
+ 
  /* End of Notification styles */
