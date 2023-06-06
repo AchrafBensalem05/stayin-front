@@ -12,6 +12,8 @@ import PlacePage from "./pages/PlacePage";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import { PageRoutes } from './Routes/PageRoutes';
 import PlacesFormPage from './pages/PlacesFormPage'
+import PlacesPage from './pages/PlacesPage'
+import UsersDashboardPage from './pages/UsersDashboard'
 import { AppConsts } from './Routes/AppConsts';
 // import Popup from './Popup/Popup';
 import Home from './Home';
@@ -41,11 +43,11 @@ function App() {
           <Route path={PageRoutes.AccountBookingById} element={<BookingPage />} />
           <Route path={PageRoutes.BookingById} element={<Booking />} />
           <Route path={PageRoutes.AccountBookings} element={<BookingsPage />} />
-          <Route path={PageRoutes.Account} element={<ProfilePage />} />
-          {/* <Route path="/account/places" element={<PlacesPage />} /> */}
-          <Route path={PageRoutes.AccountSubpageAction} element={<PlacesFormPage />} />
+         <Route path={PageRoutes.UserPlaces } element={<PlacesPage/>}/>
+          <Route path={PageRoutes.NewPlace} element={<PlacesFormPage />} />
           <Route path={PageRoutes.PlaceById} element={<PlacePage />} />
           <Route path={PageRoutes.Search} element={<Home />} />
+          <Route path={PageRoutes.UsersDashboard} element={<UsersDashboardPage />} /> 
         </Route>
 
         <Route>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import Header from "../Header.jsx"
 import { Navigate } from "react-router-dom";
 import Perks from "../Perks.jsx";
+import AppartementTypes from "../AppartementTypes.jsx";
 import axios from "axios";
 import { AppConsts } from "../Routes/AppConsts";
 import { ApiRoutes } from "../Routes/ApiRoutes";
@@ -19,12 +20,13 @@ export default function PlacesFormPage() {
   const [addedPhotos, setAddedPhotos] = useState([]);
   const [description, setDescription] = useState('');
   const [perks, setPerks] = useState([]);
+  const [apartementType, setApartementType] = useState([]);
   const [extraInfo, setExtraInfo] = useState('');
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [maxGuests, setMaxGuests] = useState(1);
   const [price, setPrice] = useState(100);
-  const [price_month, setPriceMonth] = useState(900);
+ 
   const [redirect, setRedirect] = useState(false);
   /* useEffect(() => {
      if (!id) {
@@ -113,11 +115,21 @@ export default function PlacesFormPage() {
 
   }
 
+
+  //////get user id///////////
+  function GetUserId(){
+    var token = localStorage.getItem(AppConsts.JwtTokenKey);
+    var body = JSON.parse(atob(token.split('.')[1]));
+    return body.nameid.toString();
+  }
+
   async function savePlace(ev) {
-    ev.preventDefault();
-    await axios.post(ApiRoutes.AddPlace, {
+   ev.preventDefault();
+
+    const owner = GetUserId()
+    await axios.post(ApiRoutes.AddPlace, {owner,
       title, wilaya, comun, street, addedPhotos,
-      description, perks, extraInfo,
+      description, perks,apartementType,extraInfo,
       checkIn, checkOut, maxGuests, price
     });
     setRedirect(true);
@@ -184,7 +196,7 @@ export default function PlacesFormPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                 </svg>
               </button>
-              <img src={AppConsts.ServerAddress + ApiRoutes.FileById.replace("{id}", fileId)} className="rounded-2xl w-full object-cover" />
+              <img src={AppConsts.storageServer  + ApiRoutes.FileById.replace("{id}", fileId)} className="rounded-2xl w-full object-cover" />
 
             </div>
           ))}
@@ -207,6 +219,11 @@ export default function PlacesFormPage() {
         {preInput('Perks', 'select all the perks of your place')}
         <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           <Perks selected={perks} onChange={setPerks} />
+        </div>
+     
+        {preInput('Apartement Type', 'select your apartement type')}
+        <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+          <AppartementTypes selected={apartementType} onChange={setApartementType} />
         </div>
 
         {preInput('Extra info', 'house rules, etc')}
@@ -291,32 +308,12 @@ export default function PlacesFormPage() {
               />
             </label>
 
-            <label className="block mb-6">
-              <span className="text-gray-700">price per month</span>
-              <input
-                name="comune" type="text" className=" block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300
-        focus:ring
-        focus:ring-indigo-200
-        focus:ring-opacity-50 "
-                value={price_month}
-                onChange={ev => setPriceMonth(ev.target.value)}
-              />
-            </label>
+           
 
 
 
           </div>
-          {/*  <div>
-            <h3 className="mt-2 -mb-1">Price per night</h3>
-            <input type="number" value={price}
-                   onChange={ev => setPrice(ev.target.value)}/>
-          </div>
-
-          <div>
-            <h3 className="mt-2 -mb-1">Price for month</h3>
-            <input type="number" value={price_month}
-                   onChange={ev => setPriceMonth(ev.target.value)}/>
-          </div> */}
+         
         </div>
         <button className="primary my-4">Save</button>
       </form>
