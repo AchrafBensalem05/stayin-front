@@ -13,6 +13,8 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 import { PageRoutes } from './Routes/PageRoutes';
 import PlacesFormPage from './pages/PlacesFormPage'
 import { AppConsts } from './Routes/AppConsts';
+import PlacesPage from './pages/PlacesPage';
+import UsersDashboardPage from './pages/UsersDashboard'
 // import Popup from './Popup/Popup';
 import Home from './Home';
 
