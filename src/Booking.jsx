@@ -145,8 +145,6 @@ export default function Booking() {
 
 
 
-
-
   async function bookThisPlace() {
     const user=AppConsts.GetUserId()
     
@@ -161,7 +159,7 @@ export default function Booking() {
         name: name,
         phone: phone,
         email: email,
-        price: numberOfNights * appartement.price,
+        price: (numberOfNights+1) * appartement.price,
         user: user,
         reserved: false,
         //  reservedDates:["2023-05-03" , "2023-05-04", "2023-05-05"],
