@@ -24,7 +24,14 @@ axios.defaults.baseURL = AppConsts.ServerAddress;
 
 
 function Home() {
+    const [csrfToken, setCsrfToken] = useState('');
 
+    useEffect(() => {
+      const meta = document.querySelector('meta[name="csrf-token"]');
+      if (meta) {
+        setCsrfToken(meta.content);
+      }
+    }, []);
     function GetUserId(){
         // var token = localStorage.getItem(AppConsts.JwtTokenKey);
         // var body = JSON.parse(atob(token.split('.')[1]));
@@ -42,7 +49,7 @@ function Home() {
           });
         }, []);
       
-        function search(e)  {
+        const search=(e)=>{
        e.preventDefault();
         const formData = new FormData();
         formData.append('min',min);
@@ -53,13 +60,21 @@ function Home() {
         formData.append('type',type);
         formData.append('perks',perks);
         formData.append('wilaya',selectedWilaya);
+
         formData.append('commune',selectedCommune);
-          axios.post(ApiRoutes.search,formData).then(response => {
-            setPlaces(response.data);
-            console.log(formData);
+
+
+        
+          axios.post('http://127.0.0.1:8000/search',formData, {
+            csrfToken,
+          }
+          ).then(response => {
+            setPlaces(response.data[0]);
+                console.log(response.data[0])
             // setPlaces(response.data);
           });
         }
+
     const [min, setMin] = useState('');
     const [max, setMax] = useState('');
     const [minguests, setMingeusts] = useState('');
@@ -108,6 +123,7 @@ return (
         <div className='background ' >
             <img src={logoo} alt="" className="cc" fluid />
         </div>
+        <form onSubmit={search}>
         <div className='content position-absolute d-flex flex-column justify-content-center align-items-center'>
             <div className='title'>
                 <h1 className="text-light ch">Choose your dream home</h1>
@@ -167,7 +183,7 @@ return (
                 <input className='inpute' type="date" placeholder='choose date '/>
             </div>
             <div className='containers'>
-                <Button variant="" className="mx-2 mt-3 signin text-white">search</Button>   
+                <Button type='submit' className="mx-2 mt-3 signin text-white">search</Button>   
             </div>
             <div className="vertical-divider"></div>
             <div className='containers'>
@@ -175,12 +191,13 @@ return (
             </div>
         </div>
     </div>
+    </form>
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
      <div className="bg-light modal-content">
         <div class="container">
             <div class="container">
-                <form onSubmit={(e)=>this.search(e)} method="GET"> 
+                <form onSubmit={search} > 
                   <div className='mt-3'>
                     <h3 className="h3">price range</h3>
                     <p className='pp'>The average nightly price is $80, not including fees or taxes.</p>
@@ -365,12 +382,13 @@ return (
 <div className="mt-8 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
   {places.length > 0 && places.map(place => (
     <Link to={PageRoutes.PlaceById.replace(":id",place._id)}>
+
       <div className="w-400 h-60 rounded-2xl flex">
-        {place.photos?.[0] && (
-          <Image className="rounded-2xl h-full w-full aspect-square " src={place.photos?.[0]} alt=""/>
+        {place.photo.split(',')[0] && (
+          <Image className="rounded-2xl h-full w-full aspect-square " src={place.photo.split(',')[0]} alt=""/>
         )}
       </div>
-      <h2 className="font-bold">{place.address}</h2>
+      <h2 className="font-bold">{place.commune}-{place.wilaya}</h2>
       <h3 className="text-sm text-gray-500">{place.title}</h3>
       <div className="mt-1">
         <span className="font-bold">${place.price}</span> per night
