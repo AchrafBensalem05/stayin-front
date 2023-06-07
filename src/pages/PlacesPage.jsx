@@ -12,18 +12,12 @@ export default function PlacesPage() {
   
 ///get user id///////////
 
-function GetUserId(){
-    var token = localStorage.getItem(AppConsts.JwtTokenKey);
-    var body = JSON.parse(atob(token.split('.')[1]));
-    console.log(typeof(body.nameid))
-    return body.nameid;
-  }
-  console.log('user '+GetUserId())
+  // console.log('user '+AppConsts.GetUserId());
 
   const [places,setPlaces] = useState([]);
   useEffect(() => {
 
- const owner = GetUserId()
+ const owner = AppConsts.GetUserId()
 
     axios.get(ApiRoutes.UserPlaces.replace("{owner}", owner)).then(({data}) => {
       setPlaces(data);

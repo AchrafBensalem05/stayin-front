@@ -117,16 +117,11 @@ export default function PlacesFormPage() {
 
 
   //////get user id///////////
-  function GetUserId(){
-    var token = localStorage.getItem(AppConsts.JwtTokenKey);
-    var body = JSON.parse(atob(token.split('.')[1]));
-    return body.nameid.toString();
-  }
 
   async function savePlace(ev) {
    ev.preventDefault();
 
-    const owner = GetUserId()
+    const owner = AppConsts.GetUserId()
     await axios.post(ApiRoutes.AddPlace, {owner,
       title, wilaya, comun, street, addedPhotos,
       description, perks,apartementType,extraInfo,

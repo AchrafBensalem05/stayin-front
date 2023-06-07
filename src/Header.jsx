@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Nav';
@@ -9,29 +9,65 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import './Navbar.css';
 import { PageRoutes } from './Routes/PageRoutes';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { AppConsts } from './Routes/AppConsts';
 import { ApiRoutes } from './Routes/ApiRoutes';
 
 
-function GetUserId() {
-  var token = localStorage.getItem(AppConsts.JwtTokenKey);
-  var body = JSON.parse(atob(token.split('.')[1]));
-  return body.nameid;
-}
+
+
 
 const NavBar = () => {
-  useEffect(
-    
-    ()=>{
 
-     setInterval(async ()=>{
-        var res = await fetch(AppConsts.ServerAddress+ ApiRoutes.GetNotificationByUser.replace("{userid}", GetUserId()));
-        var body= await res.json()
-        console.log(body)
-     }, 2000)
-    },[]
-  )
+  const [notifications, setNotifications] = useState([]);
+  const [displayNotifications, setDisplayNotifications] = useState(false);
+
+  async function OpenReservation(notification) {
+    if (notification.not_read) {
+      try {
+        await fetch(AppConsts.ServerAddress + ApiRoutes.SetNotificationRead.replace("{id}", notification._id));
+      }
+      catch (error) {
+        console.log("error when setting notification as unread")
+      }
+    }
+    var link = PageRoutes.AccountBookingById.replace(":id", notification.id_reservation);
+    window.open(link);
+  }
+
+  async function OpenNotifications() {
+
+    if (displayNotifications) {
+      setDisplayNotifications(false);
+      return;
+    }
+    
+    setDisplayNotifications(true);
+
+    try {
+      var res = await fetch(AppConsts.ServerAddress + ApiRoutes.GetNotificationByUser.replace("{userid}", AppConsts.GetUserId()));
+      var body = await res.json();
+      setNotifications(body);
+
+    }
+    catch (error) {
+      console.log("Error talking to server from notifications");
+    }
+
+  }
+
+
+
+  // useEffect(
+
+  //   () => {
+
+  //     setInterval(async () => {
+
+  //       console.log(body)
+  //     }, 2000)
+  //   }, []
+  // )
 
   return (
     <Navbar bg="light" expand="lg">
@@ -39,7 +75,22 @@ const NavBar = () => {
         <Image src={logoo} alt="Image" className="xx" fluid />
 
         <Form className="d-flex">
-          <img src="/assets/notification.svg"  width="25px" className="me-3" />
+
+          <div>
+            <img src="/assets/notification.svg" width="25px" className="me-3 mt-1" onClick={() => OpenNotifications()} />
+
+            <div className={displayNotifications ? "notification-container" : "notification-container hide"}>
+              {notifications?.length > 0 && notifications.map(notif => (
+                <div className={notif.not_read ? "not-read" : ""} onClick={() => OpenReservation(notif)} >{notif.message}</div>
+              ))}
+              {notifications?.length <= 0 ? " No notifications " : ""}
+            </div>
+          </div>
+
+
+
+
+
           <Nav.Link className="me-3"><Link to={PageRoutes.AccountBookings}><h6 className="font-weight-bold">AccountBookings</h6></Link></Nav.Link>
           <Nav.Link className="me-3"><Link to={PageRoutes.Search}><h6 className="font-weight-bold">Search</h6></Link></Nav.Link>
           <Nav.Link className="me-3"><Link to={PageRoutes.UsersDashboard}><h6 className="font-weight-bold">UsersDashboard</h6></Link></Nav.Link>

@@ -31,14 +31,13 @@ export default function BookingPage() {
   async function payForThisPlace(){
     const response = await axios.post(ApiRoutes.Paid , {
       //appartement:id,
-    
-     price:price,
      payerId:user,
+     Amount:14,
      CurrencyCode: "USD",
      PaymentDate: new Date(),
      ReservationId: idreservation,
-   /*   CancelUrl: cancelUrl,
-     ReturnUrl: returnUrl, */
+     CancelUrl: "http://localhost:3000",
+     ReturnUrl: "http://localhost:8800/reservation/validate?ReservationId="+idreservation,
       //  reservedDates:["2023-05-03" , "2023-05-04", "2023-05-05"],
 
 
@@ -46,7 +45,8 @@ export default function BookingPage() {
 
     });
     const approveLink = response.data.approveLink;
-      setRedirect(approveLink);
+      // setRedirect(approveLink);
+      window.location.replace(approveLink)
 
     
   }
