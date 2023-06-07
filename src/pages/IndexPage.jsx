@@ -29,7 +29,11 @@ console.log('user '+GetUserId())
     });
   }, []);
 
-  
+  function search()  {
+    axios.get(ApiRoutes.Search).then(response => {
+      setPlaces(response.data);
+    });
+  }
 
 
   return (

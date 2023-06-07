@@ -15,6 +15,8 @@ export class ApiRoutes {
     
 
     static Paid= "/payment/create/order"
+
+    static Search="/search"
     
     static GetPlaceById = "/appartement/places/{id}";
     static GetAllPlaces = "/appartement/places/all";

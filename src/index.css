@@ -12,6 +12,7 @@ textarea{
 textarea{
     height: 140px;
 }
+
 button{
     @apply bg-gray-300;
 }
