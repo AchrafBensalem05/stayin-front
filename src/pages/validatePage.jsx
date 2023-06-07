@@ -1,40 +1,36 @@
 import axios from 'axios';
-import { redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { ApiRoutes } from '../Routes/ApiRoutes';
 import { PageRoutes } from '../Routes/PageRoutes';
-import { Navigate } from "react-router-dom";
-import { useState , useEffect } from "react";
-import { id } from 'date-fns/locale';
+import { useNavigate } from 'react-router-dom';
 
-const ReservationUpdatePage = ({ reservationId }) => {
-    const id = useParams()
-const [redirect, setRedirect] = useState('');
-useEffect(() => {
-    
+const ReservationUpdatePage = () => {
+  const { reservationId } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
     const updateReservation = async () => {
       try {
-        const response = await axios.put(ApiRoutes.ValidateRerservation.replace("{id}",id),{
-            pending:false
-        })
+        const response = await axios.put(ApiRoutes.ValidateReservation.replace('{id}', reservationId), {
+          pending: false,
+        });
 
         // Check if the update was successful
-        if (response.ok) {
+        if (response.status === 200) {
           // Redirect the user to the home page
-          setRedirect(PageRoutes.validateReservation)
+          navigate(PageRoutes.validateReservation);
         } else {
           // Handle error response
-          const errorData = await response.json();
-          console.log(errorData.error);
+          console.log('Error:', response.data.error);
         }
       } catch (error) {
         console.error(error);
       }
     };
-    if (redirect) {
-        return <Navigate to={redirect} />
-      }
+
     updateReservation();
-  }, reservationId);
+  }, [navigate, reservationId]);
 
   return (
     <div>
@@ -43,4 +39,5 @@ useEffect(() => {
     </div>
   );
 };
+
 export default ReservationUpdatePage;

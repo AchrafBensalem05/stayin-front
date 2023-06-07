@@ -34,12 +34,12 @@ export default function BookingPage() {
     const response = await axios.post(ApiRoutes.Paid , {
       //appartement:id,
      payerId:user,
-     Amount:reservation.price,
+     Amount:reservation.price ,
      CurrencyCode: "USD",
      PaymentDate: new Date(),
      ReservationId: idreservation,
      CancelUrl: "http://localhost:3000",
-     ReturnUrl: "http://localhost:3000/reservation/validate?id="+idreservation,
+     ReturnUrl: "http://localhost:3000/reservation/validate?ReservationId="+idreservation,
       //  reservedDates:["2023-05-03" , "2023-05-04", "2023-05-05"],
 
 
