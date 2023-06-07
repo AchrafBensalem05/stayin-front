@@ -24,7 +24,11 @@ export default function IndexPage() {
     });
   }, []);
 
-  
+  function search()  {
+    axios.get(ApiRoutes.Search).then(response => {
+      setPlaces(response.data);
+    });
+  }
 
 
   return (
