@@ -17,7 +17,7 @@ export default function PlacePage() {
 
   async function addFeedBack(ev) {
     ev.preventDefault();
-    const user = GetUserId()
+    const user = AppConsts.GetUserId()
 
     //////////////////// add feedBack/////////////////////
 
@@ -53,12 +53,6 @@ export default function PlacePage() {
 
   ///get user id///////////
 
-function GetUserId(){
-  var token = localStorage.getItem(AppConsts.JwtTokenKey);
-  var body = JSON.parse(atob(token.split('.')[1]));
-  return body.nameid;
-}
-console.log('user '+GetUserId())
 
 
   

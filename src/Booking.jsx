@@ -15,15 +15,10 @@ import { PageRoutes } from "./Routes/PageRoutes";
 
 export default function Booking() {
 
-  function GetUserId() {
-    var token = localStorage.getItem(AppConsts.JwtTokenKey);
-    var body = JSON.parse(atob(token.split('.')[1]));
-    return body.nameid;
-  }
-  // console.log('user' + GetUserId())
+
   
-  const user=GetUserId();
-  console.log(user)
+  const user = AppConsts.GetUserId();
+  
 
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
@@ -153,7 +148,7 @@ export default function Booking() {
 
 
   async function bookThisPlace() {
-    const user=GetUserId();
+    const user=AppConsts.GetUserId()
     
     setIsLoading(true);
 

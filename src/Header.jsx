@@ -16,11 +16,6 @@ import { ApiRoutes } from './Routes/ApiRoutes';
 
 
 
-function GetUserId() {
-  var token = localStorage.getItem(AppConsts.JwtTokenKey);
-  var body = JSON.parse(atob(token.split('.')[1]));
-  return body.nameid;
-}
 
 const NavBar = () => {
 
@@ -50,7 +45,7 @@ const NavBar = () => {
     setDisplayNotifications(true);
 
     try {
-      var res = await fetch(AppConsts.ServerAddress + ApiRoutes.GetNotificationByUser.replace("{userid}", GetUserId()));
+      var res = await fetch(AppConsts.ServerAddress + ApiRoutes.GetNotificationByUser.replace("{userid}", AppConsts.GetUserId()));
       var body = await res.json();
       setNotifications(body);
 
