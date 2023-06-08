@@ -13,6 +13,8 @@ import { PageRoutes } from "../Routes/PageRoutes.js";
 
 
 
+axios.defaults.baseURL = AppConsts.ServerAddress;
+
 
 
 
@@ -22,13 +24,108 @@ import { PageRoutes } from "../Routes/PageRoutes.js";
 
 
 function Home() {
+    const [csrfToken, setCsrfToken] = useState('');
+
+    useEffect(() => {
+      const meta = document.querySelector('meta[name="csrf-token"]');
+      if (meta) {
+        setCsrfToken(meta.content);
+      }
+    }, []);
+    function GetUserId(){
+        // var token = localStorage.getItem(AppConsts.JwtTokenKey);
+        // var body = JSON.parse(atob(token.split('.')[1]));
+        // return body.nameid;
+    return "mlkjfsmkj"  
+    }
+      console.log('user '+GetUserId())
+      
+       const [showPopup, setShowPopup] = useState(true);
+      
+        const [places,setPlaces] = useState([]);
+        useEffect(() => {
+          axios.get(ApiRoutes.GetAllPlaces).then(response => {
+            setPlaces(response.data);
+          });
+        }, []);
+      
+        const search=(e)=>{
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('min',min);
+        formData.append('max',max);
+        formData.append('minguests',minguests);
+        formData.append('checkin',checkindate);
+        formData.append('checkout',checkoutdate);
+        formData.append('type',type);
+        formData.append('perks',perks);
+        formData.append('wilaya',selectedWilaya);
+
+        formData.append('commune',selectedCommune);
+
+
+        
+          axios.post('http://127.0.0.1:8000/search',formData, {
+            csrfToken,
+          }
+          ).then(response => {
+            setPlaces(response.data[0]);
+                console.log(response.data[0])
+            // setPlaces(response.data);
+          });
+          setShowPopup(false);
+        }
+        
+        const [min, setMin] = useState('');
+        const [max, setMax] = useState('');
+        const [minguests, setMingeusts] = useState('');
+        const [checkindate, setCheckindate] = useState('');
+        const [checkoutdate, setCheckoutdate] = useState('');
+        const [type, setType] = useState('');
+        const [perks, setPerks] = useState([]);
+        const [selectedWilaya, setSelectedWilaya] = useState('');
+        const [selectedCommune, setSelectedCommune] = useState('');
+        const handleCheckboxChange = (e) => {
+        const { value, checked } = e.target;
+    
+        if (checked) {
+            setType((prevSelectedChoices) => [...prevSelectedChoices, value]);
+        } else {
+            setType((prevSelectedChoices) =>
+            prevSelectedChoices.filter((choice) => choice !== value)
+          );
+        }
+      };
+
+      const handlePerksChange = (e) => {
+        const { value, checked } = e.target;
+    
+        if (checked) {
+            setPerks((prevSelectedChoices) => [...prevSelectedChoices, value]);
+        } else {
+            setPerks((prevSelectedChoices) =>
+            prevSelectedChoices.filter((choice) => choice !== value)
+          );
+        }
+      };
+    
+    const handleWilayaChange = (e) => {
+      setSelectedWilaya(e.target.value);
+      setSelectedCommune('');
+    };
+  
+    const handleCommuneChange = (e) => {
+      setSelectedCommune(e.target.value);
+    };
 return (
-    <div className='section'>
-        <div>
+    <div>
+
+    <div className='section position-relative'>
         <div className='background ' >
             <img src={logoo} alt="" className="cc" fluid />
         </div>
-        <div className='search-content position-absolute d-flex flex-column justify-content-center align-items-center'>
+        <form onSubmit={search}>
+        <div className='content position-absolute d-flex flex-column justify-content-center align-items-center'>
             <div className='title'>
                 <h1 className="text-light ch">Choose your dream home</h1>
             </div>
@@ -37,123 +134,161 @@ return (
                 Search low prices on hotels, homes and much more...
             </p>
         
-        <div className='search d-flex bg-light p-2 rounded-4 '>
+        <div className='search-content d-flex bg-light p-2 rounded-4 '>
             <div className='containers '>
             <div className="input-group px-4  d-flex flex-column justify-content-center align-items-center">
                 <div className="input-group-prepend">
-                    <label className='labele' for="inputGroupSelect01">Wilaya</label>
+                    <label className='labele' for="wilaya">Wilaya</label>
                 </div>
-                <select className="custom-select selecthome d-flex flex-column justify-content-start align-items-start" id="inputGroupSelect01">
-                    <option selected>Choose...</option>
-                    <option value="1">batna</option>
-                    <option value="2">alger</option>
-                    <option value="3">belabbes</option>
+                <select className="custom-select selecthome d-flex flex-column justify-content-start align-items-start"  name="wilaya"  id="wilaya" value={selectedWilaya} onChange={handleWilayaChange}>
+                    <option value="">Select Wilaya</option>
+                    <option value="alger">Alger</option>
+                    <option value="batna">Batna</option>
                 </select>
                 </div>
             </div>
             <div className='containers  '>
             <div class="input-group px-4 d-flex flex-column justify-content-center align-items-center">
                 <div class="input-group-prepend">
-                    <label className='labele'  for="inputGroupSelect01">commune</label>
+                    <label className='labele' for="wilaya">Wilaya</label>
                 </div>
-                <select class="custom-select selecthome" id="inputGroupSelect01">
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select class="custom-select selecthome" 
+                    id="commune"
+                    name="commune"
+                    value={selectedCommune}
+                    onChange={handleCommuneChange}
+                    disabled={!selectedWilaya}
+                >
+                    <option value="">Select Commune</option>
+                    {selectedWilaya === 'alger' && (
+          <>
+                        <option value="bab-zouar">Bab Zouar</option>
+                        <option value="zeralda">Zeralda</option>
+                    </>
+                    )}
+                    {selectedWilaya === 'batna' && (
+                    <>
+                        <option value="arris">Arris</option>
+                        <option value="ichemoul">Ichemoul</option>
+                    </>
+                    )}
                 </select>
                 </div>
             </div>
             <div className='containers px-4'>
                 <label htmlFor="" className='labele'>checkIn</label>
-                <input className='inpute' type="date" placeholder='choose date '/>
+                <input  value={checkindate} onChange={(e)=>{setCheckindate(e.target.value)}} className='inpute' type="date" placeholder='choose date '/>
             </div>
             <div className='containers px-4'>
                 <label htmlFor="" className='labele'>CheckOut</label>
-                <input className='inpute' type="date" placeholder='choose date '/>
+                <input value={checkoutdate} onChange={(e)=>{setCheckoutdate(e.target.value)}} className='inpute' type="date" placeholder='choose date '/>
             </div>
             <div className='containers'>
-                <Button variant="" className="mx-2 mt-3 signin text-white">search</Button>   
+                <Button type='submit' className="mx-2 mt-3 signin text-white">search</Button>   
             </div>
             <div className="vertical-divider"></div>
             <div className='containers'>
                 <Button data-toggle="modal" data-target=".bd-example-modal-lg" variant="" className="d-flex justify-content-center align-items-center mx-2 mt-3 signup text-dark"> <AiOutlineFilter  style={{ marginRight: '0.5rem' }} />Filter</Button>   
             </div>
         </div>
-       </div>
-      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg">
+    </div>
+    </form>
+    
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
      <div className="bg-light modal-content">
         <div class="container">
             <div class="container">
-                <form action="{{ route('apartment.search') }}" method="GET"> 
+                <form onSubmit={search} > 
                   <div className='mt-3'>
-                    <h3>price range</h3>
-                    <p>The average nightly price is ‎$80, not including fees or taxes.</p>
+                    <h3 className="h3">price range</h3>
+                    <p className='pp'>The average nightly price is $80, not including fees or taxes.</p>
                   </div>
                     <div class="container">
                         <div class="row">
                             <div class="col-sm">
                             <div class="input-group mb-3">
-                                <input type="text" name="min" class="form-control" placeholder="Enter your input" aria-label="Enter your input" aria-describedby="minimum-text"/>
+                                <input type="text" value={min} onChange={(e)=>{setMin(e.target.value)}} name="min" class="form-control" placeholder="Enter your input" aria-label="Enter your input" aria-describedby="minimum-text"/>
                             </div>
                             </div>
                             <div class="col-sm">
                             <div class="input-group mb-3">
-                                <input type="text" name="max" class="form-control" placeholder="Enter your input" aria-label="Enter your input" aria-describedby="minimum-text"/>
+                                <input type="text" name="max" value={max} onChange={(e)=>{setMax(e.target.value)}} class="form-control" placeholder="Enter your input" aria-label="Enter your input" aria-describedby="minimum-text"/>
                             </div>
                             </div>
                             
                         </div>
                     </div>
                     <hr className="divider" />
-
                     <div class="container">
                         <div class="row">
                             <div class="col-sm">
-                                <h3 >
+                                <h3 className="h3">
                                     number of guests
                                 </h3>
-                                <label for="custom-select " className='mb-2'>choose your apartement type:</label>
+                                <label for="custom-select "className='pp' >choose your apartement minguests:</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" name="ming" class="form-control" placeholder="Enter your input" aria-label="Enter your input" aria-describedby="minimum-text"/>
+                                    <input type="text" name="ming" value={minguests} onChange={(e)=>{setMingeusts(e.target.value)}} class="form-control" placeholder="Enter your input" aria-label="Enter your input" aria-describedby="minimum-text"/>
                             </div>
 
                             </div>
                             <div class="col-sm">
-                                <h3 >
-                                    property type
-                                </h3>
-                                <div class="form-group">
-                                        <label for="custom-select" className='mb-2'>choose your apartement type:</label>
-                                        <select class="form-control" name="type" id="custom-select">
-                                        <option value="">Select a country</option>
-                                            <option value="apartement">apartement</option>
-                                            <option value="room">room</option>
-                                            <option value="shared house">shared house</option>
-                                        </select>
-                                </div>
+             
+                            
                             </div>
                             
                         </div>
                     </div>
 
                     <hr className="divider " />
-                    <h3 >choose a date</h3>
+                    <h3 className="h3">choose a date</h3>
                     <div class="container">
                         <div class="row mb-3">
                             <div class="col-sm">
-                                <label for="checkin">checkin</label>
-                                <input type="date" id="checkin" name="checkin"/>
+                                <label for="checkin" className='label'>checkin:</label>
+                                <input type="date" value={checkindate} onChange={(e)=>{setCheckindate(e.target.value)}} id="checkin" name="checkin"/>
                             </div>
                             <div class="col-sm">
-                                <label for="checkout">checkout</label>
-                                <input type="date" id="checkout" name="checkout"/>
+                                <label for="checkout" className='label'>checkout:</label>
+                                <input type="date" value={checkoutdate} onChange={(e)=>{setCheckoutdate(e.target.value)}} id="checkout" name="checkout"/>
                             </div>
                         </div>
                     </div>
-                    
-                    <h3 >
+                    <h3 className="h3">
+                        property type
+                    </h3>
+                    <div class="container mt-3 mb-2">
+                    <div class="row">
+                        <div class="col-sm">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" checked={type.includes('apartement')} onChange={handleCheckboxChange} value="apartement" name="type[]" class="custom-control-input" id="customCheck1"/>
+                            <label class="custom-control-label" for="customCheck1">apartement</label>
+                        </div>
+                        </div>
+                        <div class="col-sm">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" value="shared house" checked={type.includes('shared house')} onChange={handleCheckboxChange} name="type[]" class="custom-control-input" id="customCheck1"/>
+                            <label class="custom-control-label" for="customCheck1">shared house</label>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                        <div class="custom-control custom-checkbox">
+                            <input value="garage" checked={type.includes('garage')} onChange={handleCheckboxChange} type="checkbox" name="type[]" class="custom-control-input" id="customCheck1"/>
+                            <label class="custom-control-label" for="customCheck1">garage</label>
+                        </div>
+                        </div>
+                        <div class="col-sm">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" checked={type.includes('hotel')} onChange={handleCheckboxChange} value="hotel" name="type[]" class="custom-control-input" id="customCheck1"/>
+                            <label class="custom-control-label" for="customCheck1">hotel</label>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <hr className="divider " />
+                    <h3 className="h3">
                         perks
                     </h3>
 
@@ -161,13 +296,13 @@ return (
                         <div class="row">
                             <div class="col-sm">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" value="wifi" name="perks[]" class="custom-control-input" id="customCheck1"/>
+                                <input type="checkbox" checked={perks.includes('wifi')} onChange={handlePerksChange} value="wifi" name="perks[]" class="custom-control-input" id="customCheck1"/>
                                 <label class="custom-control-label" for="customCheck1">wifi</label>
                             </div>
                             </div>
                             <div class="col-sm">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" value="tv" name="perks[]" class="custom-control-input" id="customCheck1"/>
+                                <input type="checkbox" checked={perks.includes('tv')} onChange={handlePerksChange} value="tv" name="perks[]" class="custom-control-input" id="customCheck1"/>
                                 <label class="custom-control-label" for="customCheck1">tv</label>
                             </div>
                             </div>  
@@ -175,39 +310,56 @@ return (
                         <div class="row">
                             <div class="col-sm">
                             <div class="custom-control custom-checkbox">
-                                <input value="dryer" type="checkbox" name="perks[]" class="custom-control-input" id="customCheck1"/>
+                                <input value="dryer" type="checkbox" checked={perks.includes('dryer')} onChange={handlePerksChange} name="perks[]" class="custom-control-input" id="customCheck1"/>
                                 <label class="custom-control-label" for="customCheck1">dryer</label>
                             </div>
                             </div>
                             <div class="col-sm">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" value="kitchen" name="perks[]" class="custom-control-input" id="customCheck1"/>
+                                <input type="checkbox" value="kitchen" checked={perks.includes('kitchen')} onChange={handlePerksChange} name="perks[]" class="custom-control-input" id="customCheck1"/>
                                 <label class="custom-control-label" for="customCheck1">kitchen</label>
                             </div>
                             </div>  
                         </div>
                 </div>
                 <hr className="divider" />
-                <h3 >adresse</h3>
+                <h3 className="h3" >adresse</h3>
 
-                    <div class="container"  >
+                    <div class="container mb-4"  >
                         <div class="row">
                             <div class="col-sm">
                             <div class="form-group">
-                            <label for="country">Select a country:</label>
-                                <select id="country" class="form-select" name="wilaya">
-                                    <option value="">Select a country</option>
-                                    <option value="Algeria">Algeria</option>
-                                    <option value="England">England</option>
+                            <label htmlFor="wilaya">Wilaya:</label>
+                                <select id="wilaya" class="form-select" name="wilaya"  value={selectedWilaya} onChange={handleWilayaChange}>
+                                    <option value="">Select Wilaya</option>
+                                    <option value="alger">Alger</option>
+                                    <option value="batna">Batna</option>
                                 </select>
                             </div>
                             </div>
                             
                             <div class="col-sm">
                             <div class="form-group">
-                            <label for="state">Select a state:</label>
-                                <select class="form-select" id="state" name="commune" disabled>
-                                    <option value="">Select a state</option>
+                            <label htmlFor="commune">Commune:</label>
+                                <select class="form-select" name="commune"
+                                        id="commune"
+                                        value={selectedCommune}
+                                        onChange={handleCommuneChange}
+                                        disabled={!selectedWilaya}
+                                >
+                                    <option value="">Select a commune</option>
+                                    {selectedWilaya === 'alger' && (
+                                            <>
+                                                <option value="bab-zouar">Bab Zouar</option>
+                                                <option value="zeralda">Zeralda</option>
+                                            </>
+                                            )}
+                                            {selectedWilaya === 'batna' && (
+                                            <>
+                                                <option value="arris">Arris</option>
+                                                <option value="ichemoul">Ichemoul</option>
+                                            </>
+                                            )}
                                 </select>
                             </div>
                             </div>
@@ -222,21 +374,34 @@ return (
             </div>
         </div>
      </div>
-      </div>
- </div>
- </div>
- 
- <IndexPage/>
-
+  </div>
+</div>
 
     </div>
+
     
+<div>
+   
+<div className="mt-8 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+  {places.length > 0 && places.map(place => (
+    <Link to={PageRoutes.PlaceById.replace(":id",place._id)}>
 
+      <div className="w-400 h-60 rounded-2xl flex">
+        {place.photo.split(',')[0] && (
+          <Image className="rounded-2xl h-full w-full aspect-square " src={place.photo.split(',')[0]} alt=""/>
+        )}
+      </div>
+      <h2 className="font-bold">{place.commune}-{place.wilaya}</h2>
+      <h3 className="text-sm text-gray-500">{place.title}</h3>
+      <div className="mt-1">
+        <span className="font-bold">${place.price}</span> per night
+      </div>
+    </Link>
+  ))}
+</div>
+</div>
 
-
-
-
-
+</div>
   );
 }
 

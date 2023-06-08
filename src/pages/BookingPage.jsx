@@ -28,17 +28,18 @@ export default function BookingPage() {
   const idreservation =reservation._id
   const price =reservation.price
   const user= reservation.user
+
+
   async function payForThisPlace(){
     const response = await axios.post(ApiRoutes.Paid , {
       //appartement:id,
-    
-     price:price,
      payerId:user,
+     Amount:reservation.price ,
      CurrencyCode: "USD",
      PaymentDate: new Date(),
      ReservationId: idreservation,
-   /*   CancelUrl: cancelUrl,
-     ReturnUrl: returnUrl, */
+     CancelUrl: "http://localhost:3000",
+     ReturnUrl: "http://localhost:5000/ms-reservation/reservation/validate?ReservationId="+idreservation,
       //  reservedDates:["2023-05-03" , "2023-05-04", "2023-05-05"],
 
 
@@ -46,13 +47,20 @@ export default function BookingPage() {
 
     });
     const approveLink = response.data.approveLink;
-      setRedirect(approveLink);
+      // setRedirect(approveLink);
+      window.location.replace(approveLink)
 
     
   }
+
+
+
   if (redirect) {
     return <Navigate to={redirect} />
   }
+
+
+  
 
   return (
     <div className="bg-gray-200 p-6 my-6 rounded-2xl flex items-center justify-between">

@@ -13,12 +13,7 @@ export default function IndexPage() {
 
 ///get user id///////////
 
-function GetUserId(){
-  var token = localStorage.getItem(AppConsts.JwtTokenKey);
-  var body = JSON.parse(atob(token.split('.')[1]));
-  return body.nameid;
-}
-console.log('user '+GetUserId())
+
 
 
 
@@ -28,9 +23,6 @@ console.log('user '+GetUserId())
       setPlaces(response.data);
     });
   }, []);
-
-  
-
 
   return (
     <div>
