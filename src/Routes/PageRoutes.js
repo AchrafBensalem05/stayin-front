@@ -10,7 +10,7 @@ export class PageRoutes {
     static AccountBookings = "/account/bookings";
     static AccountBookingById = "/account/bookings/:id";
     static Search = "/search";
-
+    static validateReservation ="/reservation/validate/:id"
     static UsersDashboard = "/dashboard/users"
 
 }

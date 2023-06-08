@@ -41,7 +41,7 @@ const NavBar = () => {
       setDisplayNotifications(false);
       return;
     }
-    
+
     setDisplayNotifications(true);
 
     try {
@@ -70,7 +70,7 @@ const NavBar = () => {
   // )
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" className='shadow-sm'>
       <Container className='fluid'>
         <Image src={logoo} alt="Image" className="xx" fluid />
 
@@ -96,8 +96,8 @@ const NavBar = () => {
           <Nav.Link className="me-3"><Link to={PageRoutes.UsersDashboard}><h6 className="font-weight-bold">UsersDashboard</h6></Link></Nav.Link>
           <Nav.Link className="me-3"><Link to={PageRoutes.NewPlace}><h6 className="font-weight-bold">New Place</h6></Link></Nav.Link>
 
-          <Button variant="primary  " className="mx-2 signin text-white hover-text-light" ><Link to={PageRoutes.Login}> sign in </Link></Button>
-          <Button variant="outline-" className="mx-2 signup text-dark hover-text-dark"><Link to={PageRoutes.SignUp}> sign up</Link></Button>
+          <Button variant="primary " className="mx-2 signin" ><Link to={PageRoutes.Login}> sign in </Link></Button>
+          <Button variant="outline-" className="mx-2 signup"><Link to={PageRoutes.SignUp}> sign up</Link></Button>
         </Form>
 
       </Container>
