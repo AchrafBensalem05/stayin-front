@@ -18,8 +18,8 @@ export class ApiRoutes {
 
     static Paid= "/payment/create/order"
 
-    static Search="/search"
-    
+    static Search="/search/search"
+    static GetAllFromSearch ="/search/getAll"
     static GetPlaceById = "/appartement/places/{id}";
     static GetAllPlaces = "/appartement/places/all";
     static AddPlace = "/appartement/places";

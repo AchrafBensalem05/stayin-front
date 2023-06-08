@@ -131,7 +131,7 @@ export default function PlacesFormPage() {
   }
 
   if (redirect) {
-    return <Navigate to={PageRoutes.AccountPlaces} />
+    return <Navigate to={PageRoutes.Search} />
   }
 
   return (

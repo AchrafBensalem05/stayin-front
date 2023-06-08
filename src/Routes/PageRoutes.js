@@ -4,7 +4,7 @@ export class PageRoutes {
 
     static Home = "/";
     
-    static NewPlace = "/account/places/new";
+    static NewPlace = "/account/places/new"
     static PlaceById = "/places/:id";
     static BookingById = "/booking/:id";
     static AccountBookings = "/account/bookings";
