@@ -50,7 +50,7 @@ function App() {
           <Route path={PageRoutes.PlaceById} element={<PlacePage />} />
           <Route path={PageRoutes.Search} element={<Home />} />
           <Route path={PageRoutes.UsersDashboard} element={<UsersDashboardPage />} /> 
-          <Route path={PageRoutes.ValidateReservation} element={<ReservationUpdatePage />} />
+          <Route path={PageRoutes.validateReservation} element={<ReservationUpdatePage />} />
         </Route>
 
         <Route>

@@ -39,7 +39,7 @@ export default function BookingPage() {
      PaymentDate: new Date(),
      ReservationId: idreservation,
      CancelUrl: "http://localhost:3000",
-     ReturnUrl: "http://localhost:3000/reservation/validate?ReservationId="+idreservation,
+     ReturnUrl: "http://localhost:5000/ms-reservation/reservation/validate?ReservationId="+idreservation,
       //  reservedDates:["2023-05-03" , "2023-05-04", "2023-05-05"],
 
 
