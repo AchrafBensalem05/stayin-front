@@ -40,7 +40,7 @@ function Home() {
     }
       console.log('user '+GetUserId())
       
-      
+       const [showPopup, setShowPopup] = useState(true);
       
         const [places,setPlaces] = useState([]);
         useEffect(() => {
@@ -50,7 +50,7 @@ function Home() {
         }, []);
       
         const search=(e)=>{
-       e.preventDefault();
+        e.preventDefault();
         const formData = new FormData();
         formData.append('min',min);
         formData.append('max',max);
@@ -73,18 +73,19 @@ function Home() {
                 console.log(response.data[0])
             // setPlaces(response.data);
           });
+          setShowPopup(false);
         }
-
-    const [min, setMin] = useState('');
-    const [max, setMax] = useState('');
-    const [minguests, setMingeusts] = useState('');
-    const [checkindate, setCheckindate] = useState('');
-    const [checkoutdate, setCheckoutdate] = useState('');
-    const [type, setType] = useState('');
-    const [perks, setPerks] = useState([]);
-    const [selectedWilaya, setSelectedWilaya] = useState('');
-    const [selectedCommune, setSelectedCommune] = useState('');
-    const handleCheckboxChange = (e) => {
+        
+        const [min, setMin] = useState('');
+        const [max, setMax] = useState('');
+        const [minguests, setMingeusts] = useState('');
+        const [checkindate, setCheckindate] = useState('');
+        const [checkoutdate, setCheckoutdate] = useState('');
+        const [type, setType] = useState('');
+        const [perks, setPerks] = useState([]);
+        const [selectedWilaya, setSelectedWilaya] = useState('');
+        const [selectedCommune, setSelectedCommune] = useState('');
+        const handleCheckboxChange = (e) => {
         const { value, checked } = e.target;
     
         if (checked) {
@@ -176,11 +177,11 @@ return (
             </div>
             <div className='containers px-4'>
                 <label htmlFor="" className='labele'>checkIn</label>
-                <input className='inpute' type="date" placeholder='choose date '/>
+                <input  value={checkindate} onChange={(e)=>{setCheckindate(e.target.value)}} className='inpute' type="date" placeholder='choose date '/>
             </div>
             <div className='containers px-4'>
                 <label htmlFor="" className='labele'>CheckOut</label>
-                <input className='inpute' type="date" placeholder='choose date '/>
+                <input value={checkoutdate} onChange={(e)=>{setCheckoutdate(e.target.value)}} className='inpute' type="date" placeholder='choose date '/>
             </div>
             <div className='containers'>
                 <Button type='submit' className="mx-2 mt-3 signin text-white">search</Button>   
@@ -192,6 +193,7 @@ return (
         </div>
     </div>
     </form>
+    
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
      <div className="bg-light modal-content">
@@ -374,6 +376,7 @@ return (
      </div>
   </div>
 </div>
+
     </div>
 
     
