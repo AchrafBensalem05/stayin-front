@@ -33,8 +33,8 @@ function Home() {
             setCsrfToken(meta.content);
         }
         axios.get(ApiRoutes.GetAllFromSearch).then(response => {
-            setPlaces(response.data);
-            console.log(response.data)
+        //     setPlaces(response.data);
+            setPlaces(response.data[0]);
         });
     }, []);
 
@@ -63,8 +63,6 @@ function Home() {
         }
         ).then(response => {
             setPlaces(response.data[0]);
-            console.log(response.data[0])
-            // setPlaces(response.data);
         });
         setShowPopup(false);
     }
@@ -378,14 +376,14 @@ function Home() {
                 <div className="mt-8 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
                     {
 
-                        places.length > 0 && places.map(place => (
+                        places != undefined && places != null && places.length > 0 && places.map(place => (
 
                             <Link to={PageRoutes.PlaceById.replace(":id", place.id)}>
 
                                 <div className="w-400 h-60 rounded-2xl flex">
-                                    
-                                    <Image className="rounded-2xl h-full w-full aspect-square " src={place.photo}  />
-                                    
+
+                                    <Image className="rounded-2xl h-full w-full aspect-square " src={JSON.parse(place.photo)[0]} />
+
                                 </div>
                                 <h2 className="font-bold">{place.commune}-{place.wilaya}</h2>
                                 <h3 className="text-sm text-gray-500">{place.title}</h3>
