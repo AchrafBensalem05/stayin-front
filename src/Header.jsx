@@ -95,6 +95,7 @@ const NavBar = () => {
 
 
 
+           <Nav.Link className="me-3"><Link to={PageRoutes.UserPlaces}><h6 className="font-weight-bold">Accounct</h6></Link></Nav.Link>
 
           <Nav.Link className="me-3"><Link to={PageRoutes.AccountBookings}><h6 className="font-weight-bold">AccountBookings</h6></Link></Nav.Link>
           <Nav.Link className="me-3"><Link to={PageRoutes.Search}><h6 className="font-weight-bold">Search</h6></Link></Nav.Link>

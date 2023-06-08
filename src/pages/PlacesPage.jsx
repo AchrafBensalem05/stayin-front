@@ -21,14 +21,37 @@ function GetUserId(){
   console.log('user '+GetUserId())
 
   const [places,setPlaces] = useState([]);
-  useEffect(() => {
+  
+  const [sum, setSum] = useState(0);
+
+  useEffect( () => {
 
  const owner = GetUserId()
 
     axios.get(ApiRoutes.UserPlaces.replace("{owner}", owner)).then(({data}) => {
-      setPlaces(data);
+      setPlaces(data.places);
+      setSum(data.sum)
+     
     });
+
+    
+  
+
   }, []);
+
+  /* useEffect(()=>{
+    places.forEach(place=>{
+      console.log("eeeeeeeeeeeeeeeeeeeeeeeeee "+place.somme)
+      setTotal( total + place.somme)
+      
+    })
+  } , []) */
+
+
+   
+
+
+  
 
 
   return (
@@ -37,6 +60,7 @@ function GetUserId(){
         
         <div className="mt-4">
           {places.length > 0 && places.map(place => (
+
             <Link to={'/account/places/'+place._id} className="flex cursor-pointer gap-4 bg-gray-100 p-4 rounded-2xl">
               <div className="flex w-32 h-32 bg-gray-300 grow shrink-0">
                 <PlaceImg place={place} />
@@ -44,13 +68,14 @@ function GetUserId(){
               <div className="grow-0 shrink">
                 <h2 className="text-xl">{place.title}</h2>
                 <p className="text-sm mt-2">{place.description}</p>
+                <p className="text-sm mt-2">{place.somme}</p>
               </div>
             </Link>
           ))}
         </div>
 
      <div>
-       <h1>you have </h1>
+       <h1>you have {sum} </h1>
 
      </div>
 

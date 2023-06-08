@@ -24,5 +24,6 @@ export class ApiRoutes {
     static UserPlaces = "/appartement/user-places/{owner}";
     static FeedBack= "/appartement/feedBack";
     static FeedBackById= "/appartement/feedBack/{id}";
+    static UserSomme ="/appartement/UserSomme";
     
 }

@@ -123,10 +123,27 @@ export default function PlacesFormPage() {
     return body.nameid.toString();
   }
 
+  //const {id} = 
   async function savePlace(ev) {
+   
    ev.preventDefault();
+   const owner = GetUserId()
 
-    const owner = GetUserId()
+   /* if (id) {
+    // update
+    await axios.put('/places', {
+      id, ...placeData
+    });
+    setRedirect(true);
+  } else {
+    // new place
+    await axios.post('/places', placeData);
+    setRedirect(true);
+  } */
+
+
+
+   
     await axios.post(ApiRoutes.AddPlace, {owner,
       title, wilaya, comun, street, addedPhotos,
       description, perks,apartementType,extraInfo,
