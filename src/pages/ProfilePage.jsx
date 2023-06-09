@@ -1,25 +1,64 @@
 // import Header from "../Header.jsx"
+import { useLocation } from "react-router-dom";
 import IndexPage from "./IndexPage";
 import PlacesPage from "./IndexPage";
+import { AppConsts } from "../Routes/AppConsts";
+import { ApiRoutes } from "../Routes/ApiRoutes";
+import { useEffect, useState } from "react";
 
 export default function ProfilePage() {
 
-    // TODO: maybe change this in the future
-    let editable = true;
+    var location = useLocation()
 
-    // TODO: get data from server
-    var user = { Username: "hossem", Email: "email@supermail.com", PhoneNumber: "4234324323", Description: "Real great guy to work with Lorem, ipsum dolor sit amet consectetur adipisicing elit." }
+    let editable = null;
+    var userid = null;
+    if (location.state) {
+        editable = location.state.editing;
+        userid = location.state.userId;
+    }
+    else{
+        editable = true;
+        userid = AppConsts.GetUserId();
+    }
 
-    let publications = [
-        { Title: "title of the publication", Description: "some description to say about this thing and how good it is", Id: "fmakfdamjk" },
-        { Title: "title of the publication", Description: "some description to say about this thing and how good it is", Id: "fmakfdamjk" },
-    ]
-    let reservations = [
-        { PublicationTitle: "title of  for this reservation", StartDate: new Date(), EndDate: new Date() },
-        { PublicationTitle: "title of  for this reservation", StartDate: new Date(), EndDate: new Date() },
-        { PublicationTitle: "title  for this reservation", StartDate: new Date(), EndDate: new Date() },
-        { PublicationTitle: "title of  this reservation", StartDate: new Date(), EndDate: new Date() },
-    ]
+    const [user, setUser] = useState({});
+    const [reservations, setReservations] = useState([]);
+    const [publications, setPublications] = useState([]);
+
+    // let publications = [
+    //     { Title: "title of the publication", Description: "some description to say about this thing and how good it is", Id: "fmakfdamjk" },
+    //     { Title: "title of the publication", Description: "some description to say about this thing and how good it is", Id: "fmakfdamjk" },
+    // ]
+    // let reservations = [
+    //     { PublicationTitle: "title of  for this reservation", StartDate: new Date().toDateString(), EndDate: new Date().toDateString() },
+    //     { PublicationTitle: "title of  for this reservation", StartDate: new Date().toDateString(), EndDate: new Date().toDateString() },
+    //     { PublicationTitle: "title  for this reservation", StartDate: new Date().toDateString(), EndDate: new Date().toDateString() },
+    //     { PublicationTitle: "title of  this reservation", StartDate: new Date().toDateString(), EndDate: new Date().toDateString() },
+    // ]
+
+
+
+    useEffect(() => {
+        ; (async () => {
+            {
+                var response = await fetch(AppConsts.ServerAddress + ApiRoutes.GetUserById.replace("{userid}", userid))
+                var content = await response.json();
+                setUser(content.Body);
+            }
+            {
+                var response = await fetch(AppConsts.ServerAddress + ApiRoutes.GetReservationsForUser.replace("{userid}", userid))
+                var content = await response.json();
+                setReservations(content);
+            }
+            {
+                var response = await fetch(AppConsts.ServerAddress + ApiRoutes.GetPublicationsForUser.replace("{userid}", userid))
+                var content = await response.json();
+                setPublications(content);
+            }
+
+        })();
+    }, []);
+
 
 
     function DeletePublication(publication) {
@@ -43,25 +82,44 @@ export default function ProfilePage() {
         console.log("opening", reservation);
     }
 
+    async function EditUser() {
+        var newUser = {};
+        newUser.Username = document.querySelector("#Username").textContent;
+        newUser.Email = document.querySelector("#Email").textContent;
+        newUser.PhoneNumber = document.querySelector("#PhoneNumber").textContent;
+        newUser.Description = document.querySelector("#Description").textContent;
+        newUser.ProfileImageId = user.ProfileIMageId;
+
+        await fetch(AppConsts.ServerAddress + ApiRoutes.UpdateUserById.replace("{userid}", user.Id),
+            {
+                method: "POST",
+                body: JSON.stringify(newUser),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        );
+    }
+
     return (
         <div>
 
 
             <div className="profile-page">
-                <button ><img src="/assets/arrow-left.svg" alt="arrow left" /></button>
+                <button onClick={() => window.history.back()} ><img src="/assets/arrow-left.svg" alt="arrow left" /></button>
                 <div className="left-section">
                     <div>
                         <img src="/assets/house.jpg" alt="profile picture" />
                         <input type="file" hidden name="ProfilePic" />
                     </div>
-                    <div className="display" spellCheck="false" contenteditable={editable.toString()} id="Username">{user.Username}</div>
-                    <div className="display" spellCheck="false" contenteditable={editable.toString()} id="Email">{user.Email}</div>
-                    <div className="display" spellCheck="false" contenteditable={editable.toString()} id="PhoneNumber">{user.PhoneNumber}</div>
-                    <div className="display" spellCheck="false" contenteditable={editable.toString()} id="Description">{user.Description}</div>
+                    <div className="display" spellCheck="false" contenteditable={editable.toString()} id="Username">{user?.Username}</div>
+                    <div className="display" spellCheck="false" contenteditable={editable.toString()} id="Email">{user?.Email}</div>
+                    <div className="display" spellCheck="false" contenteditable={editable.toString()} id="PhoneNumber">{user?.PhoneNumber}</div>
+                    <div className="display" spellCheck="false" contenteditable={editable.toString()} id="Description">{user?.Description}</div>
                     {
                         (!editable) ? "" :
                             <div className="button-container">
-                                <button>Edit</button>
+                                <button onClick={() => EditUser()}>Edit</button>
                             </div>
                     }
                 </div>
@@ -69,26 +127,29 @@ export default function ProfilePage() {
                     <div>
                         <span>Publications: </span>
                         {
-                            publications.map(publication => {
+                           publications?.length>0 && publications.map(publication => {
                                 return (
                                     <div>
                                         <div><span>{publication.Title}</span><span>
-                                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                onClick={() => DeletePublication(publication)}
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M16 9L13.0001 11.9999M13.0001 11.9999L10 15M13.0001 11.9999L10.0002 9M13.0001 11.9999L16.0002 15M8 6H19C19.5523 6 20 6.44772 20 7V17C20 17.5523 19.5523 18 19 18H8L2 12L8 6Z"
-                                                    stroke="#00CEE0" strokeWidth="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
+                                            {(!editable) ? "" :
+                                                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                                                    onClick={() => DeletePublication(publication)}
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M16 9L13.0001 11.9999M13.0001 11.9999L10 15M13.0001 11.9999L10.0002 9M13.0001 11.9999L16.0002 15M8 6H19C19.5523 6 20 6.44772 20 7V17C20 17.5523 19.5523 18 19 18H8L2 12L8 6Z"
+                                                        stroke="#00CEE0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            }
+                                            {(!editable) ? "" :
+                                                <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none"
+                                                    onClick={() => EditPublication(publication)}
 
-                                            <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none"
-                                                onClick={() => EditPublication(publication)}
-
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M12 3.99997H6C4.89543 3.99997 4 4.8954 4 5.99997V18C4 19.1045 4.89543 20 6 20H18C19.1046 20 20 19.1045 20 18V12M18.4142 8.41417L19.5 7.32842C20.281 6.54737 20.281 5.28104 19.5 4.5C18.7189 3.71895 17.4526 3.71895 16.6715 4.50001L15.5858 5.58575M18.4142 8.41417L12.3779 14.4505C12.0987 14.7297 11.7431 14.9201 11.356 14.9975L8.41422 15.5858L9.00257 12.6441C9.08001 12.2569 9.27032 11.9013 9.54951 11.6221L15.5858 5.58575M18.4142 8.41417L15.5858 5.58575"
-                                                    stroke="#00CEE0" strokeWidth="2" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M12 3.99997H6C4.89543 3.99997 4 4.8954 4 5.99997V18C4 19.1045 4.89543 20 6 20H18C19.1046 20 20 19.1045 20 18V12M18.4142 8.41417L19.5 7.32842C20.281 6.54737 20.281 5.28104 19.5 4.5C18.7189 3.71895 17.4526 3.71895 16.6715 4.50001L15.5858 5.58575M18.4142 8.41417L12.3779 14.4505C12.0987 14.7297 11.7431 14.9201 11.356 14.9975L8.41422 15.5858L9.00257 12.6441C9.08001 12.2569 9.27032 11.9013 9.54951 11.6221L15.5858 5.58575M18.4142 8.41417L15.5858 5.58575"
+                                                        stroke="#00CEE0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            }
 
                                             <svg width="13px" height="13px" viewBox="-4.5 0 20 20" version="1.1"
                                                 onClick={() => OpenPublication(publication)}
@@ -103,7 +164,6 @@ export default function ProfilePage() {
                                                     </g>
                                                 </g>
                                             </svg>
-
                                         </span></div>
                                         <div>{publication.Description}</div>
                                     </div>)
@@ -116,14 +176,14 @@ export default function ProfilePage() {
                         <span>Reservations: </span>
 
                         {
-                            reservations.length > 0 && reservations.map(reservation => {
+                            reservations?.length > 0 && reservations.map(reservation => {
                                 return (
 
                                     <div>
                                         <span>{reservation.PublicationTitle}</span>
                                         <span>
-                                            <span>{reservation.StartDate.toDateString()}</span>
-                                            <span>{reservation.EndDate.toDateString()}</span>
+                                            <span>{reservation.StartedDate}</span>
+                                            <span>{reservation.EndedDate}</span>
                                             <svg width="13px" height="13px" viewBox="-4.5 0 20 20" version="1.1"
                                                 onClick={() => OpenReservation(reservation)}
                                                 xmlns="http://www.w3.org/2000/svg" >

@@ -865,9 +865,11 @@ label {
 .profile-page>.right-section>div:nth-child(1)>div>div {
   display: flex;
   justify-content: space-between;
-  font-weight: 600
+  font-weight: 600;
 }
-
+.profile-page>.right-section>div:nth-child(1)>div>div>span {
+  text-align: right;
+}
 .profile-page>.right-section>div:nth-child(1)>div>div>span:nth-child(2) {
   min-width: 96px
 }
