@@ -95,6 +95,7 @@ const NavBar = () => {
           <Nav.Link className="me-3"><Link to={PageRoutes.Search}><h6 className="font-weight-bold">Search</h6></Link></Nav.Link>
           <Nav.Link className="me-3"><Link to={PageRoutes.UsersDashboard}><h6 className="font-weight-bold">UsersDashboard</h6></Link></Nav.Link>
           <Nav.Link className="me-3"><Link to={PageRoutes.NewPlace}><h6 className="font-weight-bold">New Place</h6></Link></Nav.Link>
+          <Nav.Link className="me-3"><Link to={PageRoutes.ProfilePage}><h6 className="font-weight-bold">Profile</h6></Link></Nav.Link>
 
           <Button className="signin" ><Link to={PageRoutes.Login}> sign in </Link></Button>
           <Button className="signup"><Link to={PageRoutes.SignUp}> sign up</Link></Button>
