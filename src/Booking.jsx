@@ -11,8 +11,7 @@ import 'react-date-range/dist/theme/default.css';
 import { AppConsts } from "./Routes/AppConsts";
 import { ApiRoutes } from "./Routes/ApiRoutes";
 import { PageRoutes } from "./Routes/PageRoutes";
-
-
+import reserve from "./images/reservation.jpg"
 export default function Booking() {
 
 
@@ -190,9 +189,121 @@ export default function Booking() {
  
 
   return (
-    <div>
+    
+   
+<div>
+  <div className="h-screen flex relative justify-end">
+    <div className="w-1/2 h-full absolute top-0 left-0">
+      <img src={reserve} alt="" className="h-full w-full object-cover" />
+      <div className="h-full w-full absolute top-0 left-0 bg-black opacity-50"></div>
+      <div className="h-full w-full absolute top-0 left-0 flex flex-col items-center justify-center">
+        <div className="text-white text-5xl font-semibold mb-4">Discover a Beautiful Contest</div>
+        <div className="text-white text-3xl font-semibold">Rooms Starting from <strong>{appartement.price} $</strong> per night</div>
+      </div>
+    </div>
+
+
+
+<div className=" flex items-center mx-40">
       
-      <div className="bg-white py-32 px-64 shadow  rounded-2xl" >
+<form class="w-full max-w-lg">
+  
+  <div class="flex flex-wrap -mx-3 mb-6">
+  <div className=" py-4 px-4 ml-32 border-t ">
+           
+           <DateRange
+             editableDateInputs={true}
+             onChange={(item) => setDate([item.selection])}
+             moveRangeOnFirstSelection={false}
+             ranges={date}
+             disabledDates={dateObjects}
+
+           // disabledDates={[new Date('2023-06-20'), new Date('2023-06-21')]}
+             className="date"
+             minDate={new Date()}
+           />
+         </div>
+
+    <div class="w-full px-3 flex items-center border-b border-teal-500 py-2">
+
+  
+       <input type="text" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"  placeholder="Full name" 
+        value={name}
+        onChange={ev => setName(ev.target.value)} />
+    </div>
+
+    <div class="w-full px-3 flex items-center border-b border-teal-500 py-2">
+       
+    <input type="number" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"  placeholder="Number of guests" 
+             value={numberOfGuests} onChange={ev => setNumberOfGuests(ev.target.value)} />
+    </div>
+
+    <div class="w-full px-3 flex items-center border-b border-teal-500 py-2">
+      
+    <input type="number" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"  placeholder="Phone Number" 
+               value={phone}
+               onChange={ev => setPhone(ev.target.value)}  />
+    </div>
+
+    <div class="w-full px-3 flex items-center border-b border-teal-500 py-2">
+    <input type="email" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"  placeholder="Email" 
+               value={email}
+               onChange={ev => setEmail(ev.target.value)}  />
+    </div>
+
+  </div>
+  <button onClick={bookThisPlace} className="bg-[#02b4c4] hover:bg-[#02b4c4] ml-40 text-white font-bold py-2 px-4 rounded" disabled={isLoading}>
+          Book this place
+          <ToastContainer />
+          {numberOfNights > 0 && (
+
+            <span>$ {appartement.price * numberOfNights}</span>
+          )
+          }
+        </button>
+  
+</form>
+
+    </div>
+    
+
+  </div>
+ 
+</div>
+
+
+
+
+
+
+
+
+      
+
+   
+
+
+
+
+
+
+  );
+
+
+}
+
+
+{/* <div className="flex">
+      <div className="h-screen w-1/2  flex ">
+        <img src={reserve}  className="h-full w-full object-cover" alt="" />
+      </div> 
+     </div>  */}
+
+  
+
+
+      
+      {/* <div className="bg-white py-32 px-64 shadow  rounded-2xl" >
       <div>
         <p className="text-center text-blue-700 text-base"> Reservation request</p> 
         </div>
@@ -200,8 +311,8 @@ export default function Booking() {
           price per night : {appartement.price}
         </div>
         <div className="border rounded-2xl mt-4">
-
-          {/*  <div className=" py-4 px-4 ">
+//////////////////////////////////////////////////////////
+          <div className=" py-4 px-4 ">
                     <label>Check in :</label>
                     <input type="Date"  value={checkIn} onChange={ev =>setCheckIn(ev.target.value)}/> 
                     </div>
@@ -209,14 +320,14 @@ export default function Booking() {
                     <div className=" py-4 px-4 ">
                     <label>Check out :</label>
                     <input type="Date"  value={checkOut} onChange={ev =>setCheckOut(ev.target.value)} />  
-                    </div>   */}
-          {/*  <DateRangePicker
+                    </div>   
+           <DateRangePicker
                                 ranges={[selectedRange.selection]}
                                 onChange={handleSelect} 
                                 selectedRange={selectedRange}
                                setSelectedRange={setSelectedRange}  
-                             />  */}
-                            
+                             /> 
+   //////////////////////////////////////////////////////                         
           <div className=" py-4 px-4 ml-32 border-t ">
            
             <DateRange
@@ -263,7 +374,7 @@ export default function Booking() {
           <ToastContainer />
           {numberOfNights > 0 && (
 
-            <span>$ {appartement.price * numberOfNights}</span>
+            <span>$ {appartement.price * (numberOfNights+1)}</span>
           )
           }
         </button>
@@ -271,16 +382,4 @@ export default function Booking() {
           <button className="light mt-8">Annuler</button>
         </Link>
         {message && <div>{message}</div>}
-      </div>
-
-    </div>
-
-
-
-
-
-
-  );
-
-
-}
+      </div> */}

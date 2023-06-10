@@ -25,3 +25,7 @@ button.light{
     background-color: #F6F1F1;
     @apply  p-2 w-full text-black rounded-2xl;
 }
+
+footer{
+    background-color: #edf2f7;
+}

@@ -37,9 +37,9 @@ export default function BookingPage() {
      Amount:reservation.price ,
      CurrencyCode: "USD",
      PaymentDate: new Date(),
-     ReservationId: reservation._id,
+     ReservationId: idreservation,
      CancelUrl: "http://localhost:3000",
-     ReturnUrl: "http://localhost:5000/ms-reservation/reservation/validate?ReservationId="+reservation._id,
+     ReturnUrl: "http://localhost:5000/ms-reservation/reservation/validate?ReservationId="+idreservation,
       //  reservedDates:["2023-05-03" , "2023-05-04", "2023-05-05"],
 
 
