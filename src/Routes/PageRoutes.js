@@ -13,5 +13,6 @@ export class PageRoutes {
     static Search = "/search";
     static validateReservation ="/reservation/validate/:id"
     static UsersDashboard = "/dashboard/users"
+    static reservationValidated = "/reservation/validated"
 
 }

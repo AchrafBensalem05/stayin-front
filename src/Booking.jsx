@@ -263,7 +263,7 @@ export default function Booking() {
           <ToastContainer />
           {numberOfNights > 0 && (
 
-            <span>$ {appartement.price * numberOfNights}</span>
+            <span>$ {appartement.price * (numberOfNights+1)}</span>
           )
           }
         </button>

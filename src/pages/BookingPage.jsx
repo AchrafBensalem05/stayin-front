@@ -70,9 +70,8 @@ export default function BookingPage() {
     </div>
     <div className="bg-primary p-6 text-white rounded-2xl">
       <div>Total price</div>
-      <div className="text-3xl">${reservation.price}</div>
-      <button className="primary mt-4" onClick={payForThisPlace}>
-      Pay</button>
+      <div className="text-3xl">${reservation.price}</div> {reservation.pending ? 
+      <button className="primary mt-4"  onClick={payForThisPlace}>Pay</button>:"paid"}
     </div>
   </div>
 
