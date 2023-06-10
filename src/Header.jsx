@@ -12,7 +12,7 @@ import { PageRoutes } from './Routes/PageRoutes';
 import { Link, Navigate } from "react-router-dom";
 import { AppConsts } from './Routes/AppConsts';
 import { ApiRoutes } from './Routes/ApiRoutes';
-
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -21,6 +21,15 @@ const NavBar = () => {
 
   const [notifications, setNotifications] = useState([]);
   const [displayNotifications, setDisplayNotifications] = useState(false);
+
+  const navigate = useNavigate();
+
+  const userId = AppConsts.GetUserId();
+
+  function SignOut() {
+    localStorage.setItem(AppConsts.JwtTokenKey, null);
+    navigate(PageRoutes.Home);
+  }
 
   async function OpenReservation(notification) {
     if (notification.not_read) {
@@ -45,7 +54,7 @@ const NavBar = () => {
     setDisplayNotifications(true);
 
     try {
-      var res = await fetch(AppConsts.ServerAddress + ApiRoutes.GetNotificationByUser.replace("{userid}", AppConsts.GetUserId()));
+      var res = await fetch(AppConsts.ServerAddress + ApiRoutes.GetNotificationByUser.replace("{userid}", userId));
       var body = await res.json();
       setNotifications(body);
 
@@ -87,18 +96,23 @@ const NavBar = () => {
             </div>
           </div>
 
+          <div className="nav-link me-3"><Link to={PageRoutes.AccountBookings}><h6 className="font-weight-bold">AccountBookings</h6></Link></div>
+          <div className="nav-link me-3"><Link to={PageRoutes.Search}><h6 className="font-weight-bold">Search</h6></Link></div>
+          <div className="nav-link me-3"><Link to={PageRoutes.UsersDashboard}><h6 className="font-weight-bold">UsersDashboard</h6></Link></div>
+          <div className="nav-link me-3"><Link to={PageRoutes.NewPlace}><h6 className="font-weight-bold">New Place</h6></Link></div>
+          <div className="nav-link me-3"><Link to={PageRoutes.ProfilePage}><h6 className="font-weight-bold">Profile</h6></Link></div>
 
+          {
+            ( userId == "") ?
+              <Button className="signin" ><Link to={PageRoutes.Login}>sign in </Link></Button> :
+              // TODO: redirect to home page
+              <Button className="signin" onClick={() => SignOut()} >sign out</Button>
+          }
+          {
+            (userId == "") ?
+              <Button className="signup"><Link to={PageRoutes.SignUp}>sign up</Link></Button> : ""
+          }
 
-
-
-          <Nav.Link className="me-3"><Link to={PageRoutes.AccountBookings}><h6 className="font-weight-bold">AccountBookings</h6></Link></Nav.Link>
-          <Nav.Link className="me-3"><Link to={PageRoutes.Search}><h6 className="font-weight-bold">Search</h6></Link></Nav.Link>
-          <Nav.Link className="me-3"><Link to={PageRoutes.UsersDashboard}><h6 className="font-weight-bold">UsersDashboard</h6></Link></Nav.Link>
-          <Nav.Link className="me-3"><Link to={PageRoutes.NewPlace}><h6 className="font-weight-bold">New Place</h6></Link></Nav.Link>
-          <Nav.Link className="me-3"><Link to={PageRoutes.ProfilePage}><h6 className="font-weight-bold">Profile</h6></Link></Nav.Link>
-
-          <Button className="signin" ><Link to={PageRoutes.Login}> sign in </Link></Button>
-          <Button className="signup"><Link to={PageRoutes.SignUp}> sign up</Link></Button>
         </Form>
 
       </Container>
