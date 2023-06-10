@@ -105,13 +105,6 @@ const NavBar = () => {
           <div className="nav-link me-3"><Link to={PageRoutes.ProfilePage}><h6 className="font-weight-bold">Profile</h6></Link></div>
 
 
-
-
-          <Nav.Link className="me-3"><Link to={PageRoutes.AccountBookings}><h6 className="font-weight-bold">AccountBookings</h6></Link></Nav.Link>
-          <Nav.Link className="me-3"><Link to={PageRoutes.Search}><h6 className="font-weight-bold">Search</h6></Link></Nav.Link>
-          <Nav.Link className="me-3"><Link to={PageRoutes.UsersDashboard}><h6 className="font-weight-bold">UsersDashboard</h6></Link></Nav.Link>
-          <Nav.Link className="me-3"><Link to={PageRoutes.NewPlace}><h6 className="font-weight-bold">New Place</h6></Link></Nav.Link>
-
         </Form>
 
       </Container>
