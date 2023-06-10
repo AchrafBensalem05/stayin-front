@@ -76,7 +76,6 @@ export default function ProfilePage() {
         console.log("opening", publication);
     }
 
-
     function OpenReservation(reservation) {
         // TODO: not implemented
         console.log("opening", reservation);
