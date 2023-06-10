@@ -9,6 +9,6 @@ import { AppConsts } from "./Routes/AppConsts";
   export default function Image({src,...rest}) {
     src =  AppConsts.ServerAddress + ApiRoutes.FileById.replace("{id}", src);
     return (
-      <img {...rest} src={src} alt={''} />
+      <img  {...rest} src={src} alt={''} />
     );
   }
