@@ -807,16 +807,10 @@ label {
   border-radius: 96px
 }
 
-<<<<<<< HEAD
-.profile-page>.left-section>div>img:hover {
-  cursor: pointer
-}
-=======
 /* 
 .profile-page>.left-section>div>img:hover {
   cursor: pointer
 } */
->>>>>>> ccced52070651c1c3559cc334cd2dd36db23ef7d
 
 .profile-page>.left-section>.display {
   font-weight: 500;
@@ -874,17 +868,11 @@ label {
   justify-content: space-between;
   font-weight: 600;
 }
-<<<<<<< HEAD
-.profile-page>.right-section>div:nth-child(1)>div>div>span {
-  text-align: right;
-}
-=======
 
 .profile-page>.right-section>div:nth-child(1)>div>div>span {
   text-align: right;
 }
 
->>>>>>> ccced52070651c1c3559cc334cd2dd36db23ef7d
 .profile-page>.right-section>div:nth-child(1)>div>div>span:nth-child(2) {
   min-width: 96px
 }
@@ -897,17 +885,11 @@ label {
   margin-bottom: 2px;
   margin-left: 6px;
 }
-<<<<<<< HEAD
-.profile-page>.right-section>div:nth-child(1)>div>div>span>svg{
-  display: inline-block;
-}
-=======
 
 .profile-page>.right-section>div:nth-child(1)>div>div>span>svg {
   display: inline-block;
 }
 
->>>>>>> ccced52070651c1c3559cc334cd2dd36db23ef7d
 .profile-page>.right-section>div:nth-child(1)>div>div>span:nth-child(2)>svg:nth-child(3) {
   margin-bottom: 3px;
   margin-left: 6px
@@ -953,9 +935,6 @@ label {
   cursor: pointer
 }
 
-<<<<<<< HEAD
-
-=======
 #profile-pic-container {
   position: relative;
 }
@@ -973,7 +952,6 @@ label {
 }
 
 /* End of Profile Page styles  */
->>>>>>> ccced52070651c1c3559cc334cd2dd36db23ef7d
 /* End of Profile Page styles  */
 
  .carousel-slide {
@@ -987,7 +965,6 @@ label {
   max-height: 400px;
   object-fit: contain;
 }
-<<<<<<< HEAD
 
 
 
@@ -1012,5 +989,3 @@ label {
 
 
  
-=======
->>>>>>> ccced52070651c1c3559cc334cd2dd36db23ef7d

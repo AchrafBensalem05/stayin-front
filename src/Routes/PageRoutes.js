@@ -15,10 +15,6 @@ export class PageRoutes {
     static validateReservation ="/reservation/validate/:id"
     static UsersDashboard = "/dashboard/users"
     static updateAppartement= "/account/places/:id"
-<<<<<<< HEAD
     //static deleteAppartement= "/account/places/:id"
-=======
-
->>>>>>> ccced52070651c1c3559cc334cd2dd36db23ef7d
 
 }

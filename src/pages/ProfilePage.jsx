@@ -164,7 +164,7 @@ export default function ProfilePage() {
                 <div className="left-section">
                     <div id="profile-pic-container">
                         <img src={
-                            (user.ProfileImageId != null) ?
+                            (user?.ProfileImageId != null) ?
                              AppConsts.ServerAddress + 
                              ApiRoutes.FileById.replace("{id}", user.ProfileImageId) 
                              : defaultImage}
