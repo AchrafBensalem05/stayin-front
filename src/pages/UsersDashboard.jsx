@@ -2,6 +2,7 @@ import { PageRoutes } from "../Routes/PageRoutes";
 import { ApiRoutes } from "../Routes/ApiRoutes";
 import { AppConsts } from "../Routes/AppConsts";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -10,29 +11,29 @@ import { useEffect, useState } from "react";
 
 const UsersDashboardPage = () => {
 
+  const navigate = useNavigate();
 
   const [data, setData] = useState([]);
   const [page, setPage] = useState([0]);
 
   let users = [];
 
-  function DeleteUser(user) {
-
-    // TODO: DeleteUser
+  async function DeleteUser(user) {
     users.splice(users.indexOf(user), 1);
+    await fetch(AppConsts.ServerAddress + ApiRoutes.DeleteUserById.replace("{userid}", user.Id));
     DisplayUsers();
   }
 
   function EditUser(user) {
-
-    // TODO: EditUser
-    console.log("editing user ", user);
+    navigate(PageRoutes.ProfilePage, {
+      state: { editing: true, userId : user.Id }
+    });
   }
 
   function OpenUserProfile(user) {
-
-    // TODO: OpenUserProfile
-    console.log("opening user profile", user);
+    navigate(PageRoutes.ProfilePage, {
+      state: { editing: false, userId : user.Id }
+    });
   }
 
 

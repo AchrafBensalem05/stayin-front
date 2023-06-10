@@ -2,6 +2,11 @@ export class ApiRoutes {
     static Login = "/auth/login";
     static SignUp = "/auth/signup";
     static GetAllUsers = "/auth/users/all/{page}";
+    static DeleteUserById = "/auth/users/delete/{userid}";
+    static UpdateUserById = "/auth/users/update/{userid}";
+    static GetUserById = "/auth/users/byId/{userid}";
+    static GetReservationsForUser = "/auth/reservations/byUserId/{userid}";
+    static GetPublicationsForUser = "/auth/publications/byUserId/{userid}";
 
     static UploadFile = "/storage/file/upload";
     static FileById = "/storage/file/{id}";
@@ -20,8 +25,8 @@ export class ApiRoutes {
 
     static Paid= "/payment/create/order"
 
-    static Search="/search"
-    
+    static Search="/search/search"
+    static GetAllFromSearch ="/search/getAll"
     static GetPlaceById = "/appartement/places/{id}";
     static GetAllPlaces = "/appartement/places/all";
     static AddPlace = "/appartement/places";

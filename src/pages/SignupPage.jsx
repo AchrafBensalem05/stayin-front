@@ -110,7 +110,7 @@ const SignupPage = () => {
       <div>
         <div>
           <div className="background"></div>
-          <div className="content">
+          <div className="hossem-content">
             <div className="left">
               <div>Welcome</div>
               <div>Find your perfect place to call home, with just a tap of your finger.</div>

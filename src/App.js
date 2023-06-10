@@ -19,6 +19,7 @@ import { AppConsts } from './Routes/AppConsts';
 // import Popup from './Popup/Popup';
 import Home from './pages/Home';
 import ReservationUpdatePage from './pages/validatePage';
+import NotFound from './pages/NotFound';
 
 axios.defaults.baseURL = AppConsts.ServerAddress;
 
@@ -51,11 +52,17 @@ function App() {
           <Route path={PageRoutes.updateAppartement} element={<PlacesFormPage />} />
            <Route path={PageRoutes.PlaceById} element={<PlacePage />} />
           <Route path={PageRoutes.Search} element={<Home />} />
+<<<<<<< HEAD
           <Route path={PageRoutes.UsersDashboard} element={<UsersDashboardPage />} /> 
           <Route path={PageRoutes.ProfilePage} element={<ProfilePage />} />
           <Route component={NotFound} />
 
+=======
+          <Route path={PageRoutes.UsersDashboard} element={<UsersDashboardPage />} /> deleteAppartement
+>>>>>>> ccced52070651c1c3559cc334cd2dd36db23ef7d
           <Route path={PageRoutes.validateReservation} element={<ReservationUpdatePage />} />
+          <Route path={PageRoutes.ProfilePage} element={<ProfilePage />} />
+          <Route component={NotFound} />
         </Route>
 
         <Route>
