@@ -18,6 +18,8 @@ export class ApiRoutes {
     static ReservationGetPlaces = "/ms-reservation/places/{id}";
     static CreateReservationForAppartement = "/ms-reservation/reservation/createReservation/{id}"
     static GetNotificationByUser = "/ms-reservation/notification/{userid}"
+    static GetBookingsByUser = "ms-reservation/reservation/getBookingsByUser/{user}"
+
     static SetNotificationRead = "/ms-reservation/notification/setread/{id}"
     
 
@@ -32,5 +34,6 @@ export class ApiRoutes {
     static UserPlaces = "/appartement/user-places/{owner}";
     static FeedBack= "/appartement/feedBack";
     static FeedBackById= "/appartement/feedBack/{id}";
+    static UserSomme ="/appartement/UserSomme";
     
 }
