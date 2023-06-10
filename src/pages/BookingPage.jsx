@@ -37,9 +37,9 @@ export default function BookingPage() {
      Amount:reservation.price ,
      CurrencyCode: "USD",
      PaymentDate: new Date(),
-     ReservationId: idreservation,
+     ReservationId: reservation._id,
      CancelUrl: "http://localhost:3000",
-     ReturnUrl: "http://localhost:5000/ms-reservation/reservation/validate?ReservationId="+idreservation,
+     ReturnUrl: "http://localhost:5000/ms-reservation/reservation/validate?ReservationId="+reservation._id,
       //  reservedDates:["2023-05-03" , "2023-05-04", "2023-05-05"],
 
 
@@ -70,9 +70,8 @@ export default function BookingPage() {
     </div>
     <div className="bg-primary p-6 text-white rounded-2xl">
       <div>Total price</div>
-      <div className="text-3xl">${reservation.price}</div>
-      <button className="primary mt-4" onClick={payForThisPlace}>
-      Pay</button>
+      <div className="text-3xl">${reservation.price}</div> {reservation.pending ? 
+      <button className="primary mt-4"  onClick={payForThisPlace}>Pay</button>:"paid"}
     </div>
   </div>
 

@@ -10,7 +10,7 @@ export default function ReservationUpdatePage(){
     useEffect(() => {
       const updateReservation = async () => {
         try {
-          await axios.patch(`/reservation/validate/${id}&**`);
+          await axios.get(PageRoutes.reservationValidated);
           console.log('Reservation updated successfully');
         } catch (error) {
           console.log('Error updating reservation:', error);

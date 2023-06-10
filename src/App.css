@@ -1,743 +1,758 @@
-.cc{
+.cc {
   height: 100%;
   width: 100%;
   filter: brightness(60%);
 
 }
-.background{
+
+.background {
   height: 480px;
   width: 100%;
-  
+
 }
-.text{
+
+.text {
   font-size: 30px;
   font-weight: 700;
   margin-top: 30px;
 }
-.xxxx{
+
+.xxxx {
   width: 60%;
-  
+
 }
-.List{
+
+.List {
   font-size: 36px;
   font-weight: 700;
 }
-.h3{
-    margin-top: 3px;
-    margin-bottom: 10px;
-    font-size: 30px;
-    font-weight: 700;
+
+.h3 {
+  margin-top: 3px;
+  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: 700;
 }
-.pp{
-    font-size: 17px;
-    font-weight: 400px;
-    margin-bottom: 10px;
+
+.pp {
+  font-size: 17px;
+  font-weight: 400px;
+  margin-bottom: 10px;
 }
-label{
+
+label {
   margin-left: 10px;
   font-size: 18px;
   font-weight: 600;
 }
-.label{
+
+.label {
   margin-right: 40px;
   font-weight: 600;
   font-size: 18px;
 }
-.divider{
+
+.divider {
   margin-top: 10px;
   border: 1px solid #727272;
 }
-.content{
+
+.content {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.ch{
+
+.ch {
   font-size: 50px;
 }
-.search{
+
+.search {
   margin-top: 40px;
 }
 
 
-.signup{
+.signup {
   background-color: white;
   transition: 0.3s ease;
   border-radius: 8px;
-  padding: 6px 16px ;
+  padding: 6px 16px;
   font-weight: 600;
-  box-shadow: 1px 1px 5px 0px  rgba(74, 219, 255, 0.599);
-  color:rgb(74, 219, 255);
-  margin-right: 8px; 
+  box-shadow: 1px 1px 5px 0px rgba(74, 219, 255, 0.599);
+  color: rgb(74, 219, 255);
+  margin-right: 8px;
+  border: 1px solid rgba(74, 219, 255, 0.291);
+
 }
-.signup:hover{
-  background-image: linear-gradient(to right, #91f3fc, #2ed3e2);    
-  color:white;
+
+.signup:hover {
+  background-color: white;
+  background-image: linear-gradient(to right, #91f3fc, #2ed3e2);
+  color: white;
+  border: 1px solid rgba(74, 219, 255, 0.291);
+
   text-shadow: 1px 1px 2px rgba(106, 106, 106, 0.587);
+
 }
-.signup>a:hover{
-  color:white;
-} 
+
+.signup>a:hover {
+  color: white;
+}
 
 
-.signin{
+.signin {
   background-image: linear-gradient(to right, #1ee5f7, #57ced9);
   transition: 0.3s ease;
   border-radius: 8px;
-  padding:6px 16px ;
-  border:none;
+  padding: 6px 16px;
+  border: none;
   font-weight: 600;
   box-shadow: 1px 1px 5px 1px rgba(7, 7, 7, 0.173);
-  color:white;
-  margin-right: 24px; 
+  color: white;
+  margin-right: 24px;
 }
-.signin:hover{
-  background-image: linear-gradient(to right, #0295a3, #0295a3);    
+
+.signin:hover {
+  background-image: linear-gradient(to right, #91f3fc, #2ed3e2);
+  color: white;
+  text-shadow: 1px 1px 2px rgba(106, 106, 106, 0.587);
 }
-.signin>a:hover{
-  color:white;
-} 
+
+.signin>a:hover {
+  color: white;
+}
 
 
 
 
-.containers{
+.containers {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 
 }
+
 .vertical-divider {
   margin: 0 10px;
   border-left: 2px solid #02b4c4;
 }
-.selecthome{
+
+.selecthome {
   background-color: transparent;
   border: none;
   text-align: center;
   color: black;
   padding-left: 1rem;
-  
+
 }
 
-.selecthome:focus{
+.selecthome:focus {
   outline: none;
 }
-.selecthome
-.inpute{
+
+.selecthome .inpute {
   background-color: transparent;
   border: none;
   text-align: center;
   color: black;
-  
- 
+
+
 }
-.inpute[type="date"]{
+
+.inpute[type="date"] {
   padding-left: 1rem;
 }
 
-.inpute::placeholder{
+.inpute::placeholder {
   color: black;
 }
-.inpute:focus{
+
+.inpute:focus {
   outline: none;
 }
 
-.labele{
+.labele {
   font-size: 20px;
   font-weight: 600;
-  
-}
-.signup{
-  
-  box-shadow: inset 0 0 0 2px #00cEE0, inset 0 0 0 2px #02b4c4;
 
 }
-.signup:hover{
-  box-shadow: inset 0 0 0 2px #008d9a, inset 0 0 0 2px #028e9b;
-  transition: background-color 2s ease;
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 
- .App {
-   text-align: center;
- }
-
- .App-logo {
-   height: 40vmin;
-   pointer-events: none;
- }
-
- @media (prefers-reduced-motion: no-preference) {
-   .App-logo {
-     animation: App-logo-spin infinite 20s linear;
-   }
- }
-
- .App-header {
-   background-color: #282c34;
-   min-height: 100vh;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   font-size: calc(10px + 2vmin);
-   color: white;
- }
-
- .App-link {
-   color: #61dafb;
- }
-
- @keyframes App-logo-spin {
-   from {
-     transform: rotate(0deg);
-   }
-
-   to {
-     transform: rotate(360deg);
-   }
- }
-
-
-
-
-
- /* Login page styles */
-
- @font-face {
-   font-display: swap;
-   font-family: 'Nunito Sans';
-   font-style: normal;
-   font-weight: 300;
-   src: url("/public/assets/fonts/nunito-sans-v12-latin-300.woff2") format("woff2"), url("/public/assets/fonts/nunito-sans-v12-latin-300.woff") format("woff")
- }
-
- @font-face {
-   font-display: swap;
-   font-family: 'Nunito Sans';
-   font-style: normal;
-   font-weight: 400;
-   src: url("/public/assets/fonts/nunito-sans-v12-latin-regular.woff2") format("woff2"), url("/public/assets/fonts/nunito-sans-v12-latin-regular.woff") format("woff")
- }
-
- @font-face {
-   font-display: swap;
-   font-family: 'Nunito Sans';
-   font-style: normal;
-   font-weight: 600;
-   src: url("/public/assets/fonts/nunito-sans-v12-latin-600.woff2") format("woff2"), url("/public/assets/fonts/nunito-sans-v12-latin-600.woff") format("woff")
- }
-
- @font-face {
-   font-display: swap;
-   font-family: 'Nunito Sans';
-   font-style: normal;
-   font-weight: 700;
-   src: url("/public/assets/fonts/nunito-sans-v12-latin-700.woff2") format("woff2"), url("/public/assets/fonts/nunito-sans-v12-latin-700.woff") format("woff")
- }
-
- @font-face {
-   font-display: swap;
-   font-family: 'Nunito Sans';
-   font-style: normal;
-   font-weight: 800;
-   src: url("/public/assets/fonts/nunito-sans-v12-latin-800.woff2") format("woff2"), url("/public/assets/fonts/nunito-sans-v12-latin-800.woff") format("woff")
- }
-
- @font-face {
-   font-display: swap;
-   font-family: 'Nunito Sans';
-   font-style: normal;
-   font-weight: 900;
-   src: url("/public/assets/fonts/nunito-sans-v12-latin-900.woff2") format("woff2"), url("/public/assets/fonts/nunito-sans-v12-latin-900.woff") format("woff")
- }
-
- * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   font-family: 'Nunito Sans', sans-serif
- }
-
- .login-page>img {
-   margin-bottom: -4px;
-   width: 100vw;
-   height: 100vh;
-   object-fit: cover;
-   position: absolute;
-   z-index: 0;
-   top: 0;
-   left: 0
- }
-
- .login-page>div:nth-child(2) {
-   z-index: 5;
-   position: absolute;
-   top: 50%;
-   transform: translateY(-50%);
-   width: 100%
- }
-
- .login-page>div:nth-child(2)>div {
-   margin-left: auto;
-   margin-right: auto;
-   width: 800px
- }
-
- .login-page>div:nth-child(2)>div>.background {
-   width: 800px;
-   position: absolute;
-   z-index: 2;
-   background: linear-gradient(125deg, rgba(0, 206, 224, 0.55), rgba(0, 206, 224, 0.5), rgba(227, 239, 239, 0.5), rgba(227, 239, 239, 0.4));
-   filter: blur(1.4px);
-   height: 100%;
-   margin-top: -48px;
-   border-radius: 24px
- }
-
- .login-page>div:nth-child(2)>div>.content {
-   position: relative;
-   z-index: 10;
-   margin: 48px;
-   display: flex
- }
-
- .login-page>div:nth-child(2)>div>.content>.left {
-   padding-right: 32px;
-   width: 50%
- }
-
- .login-page>div:nth-child(2)>div>.content>.left>div:nth-child(1) {
-   font-size: 48px;
-   color: #e3efef;
-   text-shadow: 1px 1px #00090A
- }
-
- .login-page>div:nth-child(2)>div>.content>.left>div:nth-child(2) {
-   font-size: 32px;
-   color: #e3efef;
-   text-shadow: 1px 1px #00090A;
-   margin-top: 80px
- }
-
- .login-page>div:nth-child(2)>div>.content>.right {
-   width: 50%
- }
-
- .login-page>div:nth-child(2)>div>.content>.right>div {
-   font-size: 48px;
-   color: #e3efef;
-   text-shadow: 1px 1px #00090A
- }
-
- .login-page>div:nth-child(2)>div>.content>.right>div>span {
-   font-size: 32px
- }
-
- .login-page>div:nth-child(2)>div>.content>.right>div>a {
-   font-size: 32px;
-   color: #00CEE0;
-   text-decoration: none;
-   display: inline-block
- }
-
- .login-page>div:nth-child(2)>div>.content>.right>div>a:hover {
-   transform: scale(1.05);
-   text-shadow: 1px 1px 1px #00090A
- }
-
- .login-page>div:nth-child(2)>div>.content>.right>input,
- .login-page>div:nth-child(2)>div>.content>.right>button {
-   font-size: 24px;
-   padding: 16px;
-   margin-top: 48px;
-   width: 100%;
-   border: none;
-   border-radius: 8px;
-   box-shadow: 1px 1px 1px 0px rgba(0, 9, 10, 0.4);
-   transition: all 0.4s
- }
-
- .login-page>div:nth-child(2)>div>.content>.right>input:focus,
- .login-page>div:nth-child(2)>div>.content>.right>input:hover,
- .login-page>div:nth-child(2)>div>.content>.right>button:focus,
- .login-page>div:nth-child(2)>div>.content>.right>button:hover {
-   outline: none
- }
-
- .login-page>div:nth-child(2)>div>.content>.right>input {
-   padding-left: 24px;
-   background: linear-gradient(135deg, rgba(227, 239, 239, 0.6), rgba(227, 239, 239, 0.3))
- }
-
- .login-page>div:nth-child(2)>div>.content>.right>button {
-   background-color: #00CEE0
- }
-
- .login-page>div:nth-child(2)>div>.content>.right>button:focus,
- .login-page>div:nth-child(2)>div>.content>.right>button:hover {
-   cursor: pointer;
-   background-color: rgba(0, 206, 224, 0.8)
- }
-
- .login-page>div.errors {
-   position: absolute;
-   bottom: 24px;
-   right: 24px;
-   z-index: 10
- }
-
- .login-page>div.errors>div {
-   padding: 8px 16px;
-   margin-top: 16px;
-   background-color: rgba(0, 9, 10, 0.7);
-   border-radius: 8px;
-   color: #e3efef
- }
-
- /* End of Login page styles */
-
-
-
-
- /* Signup page styles */
-
- .signup-page>img {
-   margin-bottom: -4px;
-   width: 100vw;
-   height: 100vh;
-   object-fit: cover;
-   position: absolute;
-   z-index: 0;
-   top: 0;
-   left: 0
- }
-
- .signup-page>div:nth-child(2) {
-   z-index: 5;
-   position: absolute;
-   top: 50%;
-   transform: translateY(-50%);
-   width: 100%
- }
-
- .signup-page>div:nth-child(2)>div {
-   margin-left: auto;
-   margin-right: auto;
-   width: 800px
- }
-
- .signup-page>div:nth-child(2)>div>.background {
-   width: 800px;
-   position: absolute;
-   z-index: 2;
-   background: linear-gradient(125deg, rgba(0, 206, 224, 0.55), rgba(0, 206, 224, 0.5), rgba(227, 239, 239, 0.5), rgba(227, 239, 239, 0.4));
-   filter: blur(1.4px);
-   height: 100%;
-   margin-top: -48px;
-   border-radius: 24px
- }
-
- .signup-page>div:nth-child(2)>div>.content {
-   position: relative;
-   z-index: 10;
-   margin: 48px;
-   display: flex
- }
-
- .signup-page>div:nth-child(2)>div>.content>.left {
-   padding-right: 32px;
-   width: 50%
- }
-
- .signup-page>div:nth-child(2)>div>.content>.left>div:nth-child(1) {
-   font-size: 48px;
-   color: #e3efef;
-   text-shadow: 1px 1px #00090A
- }
-
- .signup-page>div:nth-child(2)>div>.content>.left>div:nth-child(2) {
-   font-size: 32px;
-   color: #e3efef;
-   text-shadow: 1px 1px #00090A;
-   margin-top: 80px
- }
-
- .signup-page>div:nth-child(2)>div>.content>.right {
-   width: 50%
- }
-
- .signup-page>div:nth-child(2)>div>.content>.right>div {
-   font-size: 48px;
-   color: #e3efef;
-   text-shadow: 1px 1px #00090A
- }
-
- .signup-page>div:nth-child(2)>div>.content>.right>div>span {
-   font-size: 32px
- }
-
- .signup-page>div:nth-child(2)>div>.content>.right>div>a {
-   font-size: 32px;
-   color: #00CEE0;
-   text-decoration: none;
-   display: inline-block
- }
-
- .signup-page>div:nth-child(2)>div>.content>.right>div>a:hover {
-   transform: scale(1.05);
-   text-shadow: 1px 1px 1px #00090A
- }
-
- .signup-page>div:nth-child(2)>div>.content>.right>input,
- .signup-page>div:nth-child(2)>div>.content>.right>button {
-   font-size: 24px;
-   padding: 16px;
-   margin-top: 24px;
-   width: 100%;
-   border: none;
-   border-radius: 8px;
-   box-shadow: 1px 1px 1px 0px rgba(0, 9, 10, 0.4);
-   transition: all 0.4s
- }
-
- .signup-page>div:nth-child(2)>div>.content>.right>input:focus,
- .signup-page>div:nth-child(2)>div>.content>.right>input:hover,
- .signup-page>div:nth-child(2)>div>.content>.right>button:focus,
- .signup-page>div:nth-child(2)>div>.content>.right>button:hover {
-   outline: none
- }
-
- .signup-page>div:nth-child(2)>div>.content>.right>input {
-   padding-left: 24px;
-   background: linear-gradient(135deg, rgba(227, 239, 239, 0.6), rgba(227, 239, 239, 0.3))
- }
-
- .signup-page>div:nth-child(2)>div>.content>.right>button {
-   background-color: #00CEE0
- }
-
- .signup-page>div:nth-child(2)>div>.content>.right>button:focus,
- .signup-page>div:nth-child(2)>div>.content>.right>button:hover {
-   cursor: pointer;
-   background-color: rgba(0, 206, 224, 0.8)
- }
-
- .signup-page>div.errors {
-   position: absolute;
-   bottom: 24px;
-   right: 24px;
-   z-index: 10
- }
-
- .signup-page>div.errors>div {
-   padding: 8px 16px;
-   margin-top: 16px;
-   background-color: rgba(0, 9, 10, 0.7);
-   border-radius: 8px;
-   color: #e3efef
- }
-
-
- /* End of Signup page styles */
-
-
- /* Start of users dashboard page styles */
-
- .users-page {
-   padding-left: 32px;
-   padding-right: 32px;
-   min-height: 100vh;
-   background-image: linear-gradient(-90deg, rgba(0, 206, 224, 0.2), #e3efef)
- }
-
- .users-page .hossem-search {
-   text-align: right;
-   padding-top: 32px;
-   padding-bottom: 32px
- }
-
- .users-page .hossem-search>select {
-   background-color: transparent;
-   border: none;
-   text-align: end;
-   font-weight: bold;
-   margin-right: 24px
- }
-
- .users-page .hossem-search>input {
-   font-weight: bold;
-   border: none;
-   padding: 8px 16px;
-   border-radius: 8px
- }
-
- .users-page .hossem-search>input:focus {
-   outline: 2px solid #00CEE0
- }
-
- .users-page>.table-header>span,
- .users-page>.hossem-table>div>span {
-   text-align: center;
-   display: inline-block;
-   width: 15%
- }
-
- .users-page>.table-header>span:nth-child(5),
- .users-page>.table-header span:nth-child(6),
- .users-page>.table-header span:nth-child(7),
- .users-page>.table-header span:nth-child(8),
- .users-page>.table-header span:nth-child(9),
- .users-page>.hossem-table>div>span:nth-child(5),
- .users-page>.hossem-table>div span:nth-child(6),
- .users-page>.hossem-table>div span:nth-child(7),
- .users-page>.hossem-table>div span:nth-child(8),
- .users-page>.hossem-table>div span:nth-child(9) {
-   width: 8%
- }
-
- .users-page>.hossem-table>div span:nth-child(9) {
-   padding-left: 32px;
- }
-
- .users-page>.table-header>span:nth-child(6) {
-   margin-left: 15px
- }
-
- .users-page>.table-header>span {
-   color: rgba(0, 9, 10, 0.5)
- }
-
- .users-page>.hossem-table>div {
-   margin-top: 16px;
-   border-radius: 16px;
-   background-color: white;
-   box-shadow: 2px 2px 5px 0px rgba(0, 9, 10, 0.2)
- }
-
- .users-page>.hossem-table>div>span {
-   text-align: center;
-   text-overflow: ellipsis;
-   overflow: hidden;
-   padding-top: 16px;
-   padding-bottom: 16px
- }
-
- .users-page>.hossem-table>div>span>.update {
-   background-color: rgba(90, 255, 90, 0.323);
-   box-shadow: 2px 2px 5px 0px rgba(90, 255, 90, 0.323);
-   font-weight: bold;
-   color: #429a42;
-   border: none;
-   border-radius: 8px;
-   padding: 4px 16px;
-   margin: -16px
- }
-
- .users-page>.hossem-table>div>span>.update:hover {
-   cursor: pointer;
-   border: 2px solid rgba(90, 255, 90, 0.323)
- }
-
- .users-page>.hossem-table>div>span>.delete {
-   background-color: rgba(255, 90, 90, 0.182);
-   box-shadow: 2px 2px 5px 0px rgba(255, 90, 90, 0.182);
-   font-weight: bold;
-   color: #f95555;
-   border: none;
-   border-radius: 8px;
-   margin: -16px;
-   padding: 4px 16px
- }
-
- .users-page>.hossem-table>div>span>.delete:hover {
-   cursor: pointer;
-   border: 2px solid rgba(255, 90, 90, 0.182)
- }
-
- .users-page>.hossem-table>div>.profile {
-   height: 24px;
-   margin-top: 16px;
-   margin-bottom: 16px;
-   padding-bottom: 0;
-   padding-top: 2px;
- }
-
- .users-page>.hossem-table>div>.profile>img {
-   width: 22px;
-   height: 22px
- }
-
- .users-page>.hossem-table>div>.profile>img:hover {
-   cursor: pointer
- }
-
- .users-page>.paging {
-   padding: 48px;
-   text-align: center
- }
-
- .users-page>.paging>span,
- .users-page>.paging>button {
-   padding: 8px 16px;
-   margin: 0px 4px;
-   border: none;
-   font-weight: bolder
- }
-
- .users-page>.paging>button {
-   background-color: #00CEE0;
-   color: white;
-   border-radius: 4px;
-   box-shadow: 1px 1px 3px 0px rgba(0, 9, 10, 0.2)
- }
-
- .users-page>.paging>button:hover {
-   cursor: pointer
- }
-
-
- /* End of users dashboard page styles */
-
-
- /*aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
-
- /* Notification styles */
-
- .notification-container {
-   position: absolute;
-   margin-top: 35px;
-   border-radius: 16px;
-   background-color: #ffffff;
-   box-shadow: 1px 1px 5px 1px rgba(141, 141, 141, 0.423);
-   z-index: 5;
-   padding: 8px 16px;
-   max-height: 300px;
-   overflow-y: auto;
-   overflow-x: hide;
- }
-
- .notification-container>div {
-   box-shadow: 1px 1px 3px 1px rgba(141, 141, 141, 0.237);
-   padding: 12px;
-   margin: 24px 8px;
-   border-radius: 6px;
-   font-weight: 600;
-   background-color: #ffffff;
- }
-
- .notification-container>div:hover {
-   cursor: pointer;
-   box-shadow: 1px 1px 3px 1px rgba(141, 141, 141, 0.237), 0px 0px 8px 0px rgba(208, 253, 255, 0.664) inset;
-   color: #00CEE0;
- }
-
- .hide {
-   display: none;
-   pointer-events: none;
- }
+
+
+
+/* Login page styles */
+
+@font-face {
+  font-display: swap;
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url("/public/assets/fonts/nunito-sans-v12-latin-300.woff2") format("woff2"), url("/public/assets/fonts/nunito-sans-v12-latin-300.woff") format("woff")
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/public/assets/fonts/nunito-sans-v12-latin-regular.woff2") format("woff2"), url("/public/assets/fonts/nunito-sans-v12-latin-regular.woff") format("woff")
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url("/public/assets/fonts/nunito-sans-v12-latin-600.woff2") format("woff2"), url("/public/assets/fonts/nunito-sans-v12-latin-600.woff") format("woff")
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url("/public/assets/fonts/nunito-sans-v12-latin-700.woff2") format("woff2"), url("/public/assets/fonts/nunito-sans-v12-latin-700.woff") format("woff")
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: url("/public/assets/fonts/nunito-sans-v12-latin-800.woff2") format("woff2"), url("/public/assets/fonts/nunito-sans-v12-latin-800.woff") format("woff")
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 900;
+  src: url("/public/assets/fonts/nunito-sans-v12-latin-900.woff2") format("woff2"), url("/public/assets/fonts/nunito-sans-v12-latin-900.woff") format("woff")
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito Sans', sans-serif
+}
+
+.login-page>img {
+  margin-bottom: -4px;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0
+}
+
+.login-page>div:nth-child(2) {
+  z-index: 5;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%
+}
+
+.login-page>div:nth-child(2)>div {
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px
+}
+
+.login-page>div:nth-child(2)>div>.background {
+  width: 800px;
+  position: absolute;
+  z-index: 2;
+  background: linear-gradient(125deg, rgba(0, 206, 224, 0.55), rgba(0, 206, 224, 0.5), rgba(227, 239, 239, 0.5), rgba(227, 239, 239, 0.4));
+  filter: blur(1.4px);
+  height: 100%;
+  margin-top: -48px;
+  border-radius: 24px
+}
+
+.login-page>div:nth-child(2)>div>.hossem-content {
+  position: relative;
+  z-index: 10;
+  margin: 48px;
+  display: flex
+}
+
+.login-page>div:nth-child(2)>div>.hossem-content>.left {
+  padding-right: 32px;
+  width: 50%
+}
+
+.login-page>div:nth-child(2)>div>.hossem-content>.left>div:nth-child(1) {
+  font-size: 48px;
+  color: #e3efef;
+  text-shadow: 1px 1px #00090A
+}
+
+.login-page>div:nth-child(2)>div>.hossem-content>.left>div:nth-child(2) {
+  font-size: 32px;
+  color: #e3efef;
+  text-shadow: 1px 1px #00090A;
+  margin-top: 80px
+}
+
+.login-page>div:nth-child(2)>div>.hossem-content>.right {
+  width: 50%
+}
+
+.login-page>div:nth-child(2)>div>.hossem-content>.right>div {
+  font-size: 48px;
+  color: #e3efef;
+  text-shadow: 1px 1px #00090A
+}
+
+.login-page>div:nth-child(2)>div>.hossem-content>.right>div>span {
+  font-size: 32px
+}
+
+.login-page>div:nth-child(2)>div>.hossem-content>.right>div>a {
+  font-size: 32px;
+  color: #00CEE0;
+  text-decoration: none;
+  display: inline-block
+}
+
+.login-page>div:nth-child(2)>div>.hossem-content>.right>div>a:hover {
+  transform: scale(1.05);
+  text-shadow: 1px 1px 1px #00090A
+}
+
+.login-page>div:nth-child(2)>div>.hossem-content>.right>input,
+.login-page>div:nth-child(2)>div>.hossem-content>.right>button {
+  font-size: 24px;
+  padding: 16px;
+  margin-top: 48px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 1px 1px 1px 0px rgba(0, 9, 10, 0.4);
+  transition: all 0.4s
+}
+
+.login-page>div:nth-child(2)>div>.hossem-content>.right>input:focus,
+.login-page>div:nth-child(2)>div>.hossem-content>.right>input:hover,
+.login-page>div:nth-child(2)>div>.hossem-content>.right>button:focus,
+.login-page>div:nth-child(2)>div>.hossem-content>.right>button:hover {
+  outline: none
+}
+
+.login-page>div:nth-child(2)>div>.hossem-content>.right>input {
+  padding-left: 24px;
+  background: linear-gradient(135deg, rgba(227, 239, 239, 0.6), rgba(227, 239, 239, 0.3))
+}
+
+.login-page>div:nth-child(2)>div>.hossem-content>.right>button {
+  background-color: #00CEE0
+}
+
+.login-page>div:nth-child(2)>div>.hossem-content>.right>button:focus,
+.login-page>div:nth-child(2)>div>.hossem-content>.right>button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 206, 224, 0.8)
+}
+
+.login-page>div.errors {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10
+}
+
+.login-page>div.errors>div {
+  padding: 8px 16px;
+  margin-top: 16px;
+  background-color: rgba(0, 9, 10, 0.7);
+  border-radius: 8px;
+  color: #e3efef
+}
+
+/* End of Login page styles */
+
+
+
+
+/* Signup page styles */
+
+.signup-page>img {
+  margin-bottom: -4px;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0
+}
+
+.signup-page>div:nth-child(2) {
+  z-index: 5;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%
+}
+
+.signup-page>div:nth-child(2)>div {
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px
+}
+
+.signup-page>div:nth-child(2)>div>.background {
+  width: 800px;
+  position: absolute;
+  z-index: 2;
+  background: linear-gradient(125deg, rgba(0, 206, 224, 0.55), rgba(0, 206, 224, 0.5), rgba(227, 239, 239, 0.5), rgba(227, 239, 239, 0.4));
+  filter: blur(1.4px);
+  height: 100%;
+  margin-top: -48px;
+  border-radius: 24px
+}
+
+.signup-page>div:nth-child(2)>div>.hossem-content {
+  position: relative;
+  z-index: 10;
+  margin: 48px;
+  display: flex
+}
+
+.signup-page>div:nth-child(2)>div>.hossem-content>.left {
+  padding-right: 32px;
+  width: 50%
+}
+
+.signup-page>div:nth-child(2)>div>.hossem-content>.left>div:nth-child(1) {
+  font-size: 48px;
+  color: #e3efef;
+  text-shadow: 1px 1px #00090A
+}
+
+.signup-page>div:nth-child(2)>div>.hossem-content>.left>div:nth-child(2) {
+  font-size: 32px;
+  color: #e3efef;
+  text-shadow: 1px 1px #00090A;
+  margin-top: 80px
+}
+
+.signup-page>div:nth-child(2)>div>.hossem-content>.right {
+  width: 50%
+}
+
+.signup-page>div:nth-child(2)>div>.hossem-content>.right>div {
+  font-size: 48px;
+  color: #e3efef;
+  text-shadow: 1px 1px #00090A
+}
+
+.signup-page>div:nth-child(2)>div>.hossem-content>.right>div>span {
+  font-size: 32px
+}
+
+.signup-page>div:nth-child(2)>div>.hossem-content>.right>div>a {
+  font-size: 32px;
+  color: #00CEE0;
+  text-decoration: none;
+  display: inline-block
+}
+
+.signup-page>div:nth-child(2)>div>.hossem-content>.right>div>a:hover {
+  transform: scale(1.05);
+  text-shadow: 1px 1px 1px #00090A
+}
+
+.signup-page>div:nth-child(2)>div>.hossem-content>.right>input,
+.signup-page>div:nth-child(2)>div>.hossem-content>.right>button {
+  font-size: 24px;
+  padding: 16px;
+  margin-top: 24px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 1px 1px 1px 0px rgba(0, 9, 10, 0.4);
+  transition: all 0.4s
+}
+
+.signup-page>div:nth-child(2)>div>.hossem-content>.right>input:focus,
+.signup-page>div:nth-child(2)>div>.hossem-content>.right>input:hover,
+.signup-page>div:nth-child(2)>div>.hossem-content>.right>button:focus,
+.signup-page>div:nth-child(2)>div>.hossem-content>.right>button:hover {
+  outline: none
+}
+
+.signup-page>div:nth-child(2)>div>.hossem-content>.right>input {
+  padding-left: 24px;
+  background: linear-gradient(135deg, rgba(227, 239, 239, 0.6), rgba(227, 239, 239, 0.3))
+}
+
+.signup-page>div:nth-child(2)>div>.hossem-content>.right>button {
+  background-color: #00CEE0
+}
+
+.signup-page>div:nth-child(2)>div>.hossem-content>.right>button:focus,
+.signup-page>div:nth-child(2)>div>.hossem-content>.right>button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 206, 224, 0.8)
+}
+
+.signup-page>div.errors {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10
+}
+
+.signup-page>div.errors>div {
+  padding: 8px 16px;
+  margin-top: 16px;
+  background-color: rgba(0, 9, 10, 0.7);
+  border-radius: 8px;
+  color: #e3efef
+}
+
+
+/* End of Signup page styles */
+
+
+/* Start of users dashboard page styles */
+
+.users-page {
+  padding-left: 32px;
+  padding-right: 32px;
+  min-height: 100vh;
+  background-image: linear-gradient(-90deg, rgba(0, 206, 224, 0.2), #e3efef)
+}
+
+.users-page .hossem-search {
+  text-align: right;
+  padding-top: 32px;
+  padding-bottom: 32px
+}
+
+.users-page .hossem-search>select {
+  background-color: transparent;
+  border: none;
+  text-align: end;
+  font-weight: bold;
+  margin-right: 24px
+}
+
+.users-page .hossem-search>input {
+  font-weight: bold;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px
+}
+
+.users-page .hossem-search>input:focus {
+  outline: 2px solid #00CEE0
+}
+
+.users-page>.table-header>span,
+.users-page>.hossem-table>div>span {
+  text-align: center;
+  display: inline-block;
+  width: 15%
+}
+
+.users-page>.table-header>span:nth-child(5),
+.users-page>.table-header span:nth-child(6),
+.users-page>.table-header span:nth-child(7),
+.users-page>.table-header span:nth-child(8),
+.users-page>.table-header span:nth-child(9),
+.users-page>.hossem-table>div>span:nth-child(5),
+.users-page>.hossem-table>div span:nth-child(6),
+.users-page>.hossem-table>div span:nth-child(7),
+.users-page>.hossem-table>div span:nth-child(8),
+.users-page>.hossem-table>div span:nth-child(9) {
+  width: 8%
+}
+
+.users-page>.hossem-table>div span:nth-child(9) {
+  padding-left: 32px;
+}
+
+.users-page>.table-header>span:nth-child(6) {
+  margin-left: 15px
+}
+
+.users-page>.table-header>span {
+  color: rgba(0, 9, 10, 0.5)
+}
+
+.users-page>.hossem-table>div {
+  margin-top: 16px;
+  border-radius: 16px;
+  background-color: white;
+  box-shadow: 2px 2px 5px 0px rgba(0, 9, 10, 0.2)
+}
+
+.users-page>.hossem-table>div>span {
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-top: 16px;
+  padding-bottom: 16px
+}
+
+.users-page>.hossem-table>div>span>.update {
+  background-color: rgba(90, 255, 90, 0.323);
+  box-shadow: 2px 2px 5px 0px rgba(90, 255, 90, 0.323);
+  font-weight: bold;
+  color: #429a42;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 16px;
+  margin: -16px
+}
+
+.users-page>.hossem-table>div>span>.update:hover {
+  cursor: pointer;
+  border: 2px solid rgba(90, 255, 90, 0.323)
+}
+
+.users-page>.hossem-table>div>span>.delete {
+  background-color: rgba(255, 90, 90, 0.182);
+  box-shadow: 2px 2px 5px 0px rgba(255, 90, 90, 0.182);
+  font-weight: bold;
+  color: #f95555;
+  border: none;
+  border-radius: 8px;
+  margin: -16px;
+  padding: 4px 16px
+}
+
+.users-page>.hossem-table>div>span>.delete:hover {
+  cursor: pointer;
+  border: 2px solid rgba(255, 90, 90, 0.182)
+}
+
+.users-page>.hossem-table>div>.profile {
+  height: 24px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 0;
+  padding-top: 2px;
+}
+
+.users-page>.hossem-table>div>.profile>img {
+  width: 22px;
+  height: 22px
+}
+
+.users-page>.hossem-table>div>.profile>img:hover {
+  cursor: pointer
+}
+
+.users-page>.paging {
+  padding: 48px;
+  text-align: center
+}
+
+.users-page>.paging>span,
+.users-page>.paging>button {
+  padding: 8px 16px;
+  margin: 0px 4px;
+  border: none;
+  font-weight: bolder
+}
+
+.users-page>.paging>button {
+  background-color: #00CEE0;
+  color: white;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px 0px rgba(0, 9, 10, 0.2)
+}
+
+.users-page>.paging>button:hover {
+  cursor: pointer
+}
+
+
+/* End of users dashboard page styles */
+
+/* Notification styles */
+
+.notification-container {
+  position: absolute;
+  margin-top: 35px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 5px 1px rgba(141, 141, 141, 0.423);
+  z-index: 5;
+  padding: 8px 16px;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hide;
+}
+
+.notification-container>div {
+  box-shadow: 1px 1px 3px 1px rgba(141, 141, 141, 0.237);
+  padding: 12px;
+  margin: 24px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  background-color: #ffffff;
+}
+
+.notification-container>div:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 3px 1px rgba(141, 141, 141, 0.237), 0px 0px 8px 0px rgba(208, 253, 255, 0.664) inset;
+  color: #00CEE0;
+}
+
+.hide {
+  display: none;
+  pointer-events: none;
+}
 
  .not-read {
    box-shadow: 1px 1px 5px 0px #00cde061 !important;
@@ -746,40 +761,3 @@ label{
  }
  
  /* End of Notification styles */
-
-
- .carousel-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.carousel-image {
-  max-width: 500px;
-  max-height: 400px;
-  object-fit: contain;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
