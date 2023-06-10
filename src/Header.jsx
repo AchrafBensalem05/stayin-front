@@ -105,7 +105,6 @@ const NavBar = () => {
           {
             ( userId == "") ?
               <Button className="signin" ><Link to={PageRoutes.Login}>sign in </Link></Button> :
-              // TODO: redirect to home page
               <Button className="signin" onClick={() => SignOut()} >sign out</Button>
           }
           {

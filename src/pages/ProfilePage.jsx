@@ -12,11 +12,16 @@ export default function ProfilePage() {
 
     let editable = null;
     var userid = null;
+
+    const [pageState, setPageState] = useState({ imageChanged: false })
+
+    const defaultImage = "/assets/profile.svg";
+
     if (location.state) {
         editable = location.state.editing;
         userid = location.state.userId;
     }
-    else{
+    else {
         editable = true;
         userid = AppConsts.GetUserId();
     }
@@ -25,21 +30,17 @@ export default function ProfilePage() {
     const [reservations, setReservations] = useState([]);
     const [publications, setPublications] = useState([]);
 
-    // let publications = [
-    //     { Title: "title of the publication", Description: "some description to say about this thing and how good it is", Id: "fmakfdamjk" },
-    //     { Title: "title of the publication", Description: "some description to say about this thing and how good it is", Id: "fmakfdamjk" },
-    // ]
-    // let reservations = [
-    //     { PublicationTitle: "title of  for this reservation", StartDate: new Date().toDateString(), EndDate: new Date().toDateString() },
-    //     { PublicationTitle: "title of  for this reservation", StartDate: new Date().toDateString(), EndDate: new Date().toDateString() },
-    //     { PublicationTitle: "title  for this reservation", StartDate: new Date().toDateString(), EndDate: new Date().toDateString() },
-    //     { PublicationTitle: "title of  this reservation", StartDate: new Date().toDateString(), EndDate: new Date().toDateString() },
-    // ]
-
-
-
     useEffect(() => {
         ; (async () => {
+
+            var input = document.querySelector("#ProfilePic");
+            setPageState({ imageChanged: true });
+            input.onchange = (e) => {
+                setPageState({ imageChanged: true });
+                var file = input.files[0];
+                document.querySelector(".profile-page>.left-section>div>img").src = URL.createObjectURL(file);
+            }
+
             {
                 var response = await fetch(AppConsts.ServerAddress + ApiRoutes.GetUserById.replace("{userid}", userid))
                 var content = await response.json();
@@ -55,7 +56,6 @@ export default function ProfilePage() {
                 var content = await response.json();
                 setPublications(content);
             }
-
         })();
     }, []);
 
@@ -88,17 +88,72 @@ export default function ProfilePage() {
         newUser.Email = document.querySelector("#Email").textContent;
         newUser.PhoneNumber = document.querySelector("#PhoneNumber").textContent;
         newUser.Description = document.querySelector("#Description").textContent;
-        newUser.ProfileImageId = user.ProfileIMageId;
 
-        await fetch(AppConsts.ServerAddress + ApiRoutes.UpdateUserById.replace("{userid}", user.Id),
-            {
-                method: "POST",
-                body: JSON.stringify(newUser),
-                headers: {
-                    "Content-Type": "application/json"
-                }
+        if (pageState.imageChanged) {
+            setPageState({ imageChanged: false })
+            var file = document.querySelector("#ProfilePic").files[0];
+
+            var requestBody = {
+                FileType: "",
+                Content: ""
             }
-        );
+            // Get file extension
+            var parts = file.name.split(".");
+            requestBody.FileType = "." + parts[parts.length - 1];
+
+
+            // Create file reader
+            var reader = new FileReader();
+
+            // When data has been read
+            reader.onload = async function (e) {
+                // Base64 encode the contend of the file that we read
+                requestBody.Content = window.btoa(reader.result);
+
+                // Send request to storage server
+                var result = await fetch(AppConsts.ServerAddress + ApiRoutes.UploadFile,
+                    {
+                        method: "post",
+                        body: JSON.stringify(requestBody),
+                        headers: { "Content-Type": "application/json" }
+                    });
+
+                // Get body of the response
+                var fileId = await result.text();
+
+                newUser.ProfileImageId = fileId;
+
+                await fetch(AppConsts.ServerAddress + ApiRoutes.UpdateUserById.replace("{userid}", user.Id),
+                    {
+                        method: "POST",
+                        body: JSON.stringify(newUser),
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    }
+                );
+
+            }
+            // Read the content of the file that we submitted
+            reader.readAsBinaryString(file);
+
+        } else {
+            newUser.ProfileImageId = user.ProfileImageId;
+
+            await fetch(AppConsts.ServerAddress + ApiRoutes.UpdateUserById.replace("{userid}", user.Id),
+                {
+                    method: "POST",
+                    body: JSON.stringify(newUser),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
+        }
+
+
+
+
     }
 
     return (
@@ -108,9 +163,14 @@ export default function ProfilePage() {
             <div className="profile-page">
                 <button onClick={() => window.history.back()} ><img src="/assets/arrow-left.svg" alt="arrow left" /></button>
                 <div className="left-section">
-                    <div>
-                        <img src="/assets/house.jpg" alt="profile picture" />
-                        <input type="file" hidden name="ProfilePic" />
+                    <div id="profile-pic-container">
+                        <img src={
+                            (user.ProfileImageId != null) ?
+                             AppConsts.ServerAddress + 
+                             ApiRoutes.FileById.replace("{id}", user.ProfileImageId) 
+                             : defaultImage}
+                              alt="profile picture" />
+                        <input type="file" id="ProfilePic" />
                     </div>
                     <div className="display" spellCheck="false" contenteditable={editable.toString()} id="Username">{user?.Username}</div>
                     <div className="display" spellCheck="false" contenteditable={editable.toString()} id="Email">{user?.Email}</div>
@@ -127,7 +187,7 @@ export default function ProfilePage() {
                     <div>
                         <span>Publications: </span>
                         {
-                           publications?.length>0 && publications.map(publication => {
+                            publications?.length > 0 && publications.map(publication => {
                                 return (
                                     <div>
                                         <div><span>{publication.Title}</span><span>
