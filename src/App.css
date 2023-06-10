@@ -746,3 +746,40 @@ label{
  }
  
  /* End of Notification styles */
+
+
+ .carousel-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-image {
+  max-width: 500px;
+  max-height: 400px;
+  object-fit: contain;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

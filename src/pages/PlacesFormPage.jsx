@@ -1,18 +1,19 @@
 //import PhotosUploader from "../PhotosUploader.jsx";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import Header from "../Header.jsx"
-import { Navigate } from "react-router-dom";
+import { Navigate , useParams } from "react-router-dom";
 import Perks from "../Perks.jsx";
 import AppartementTypes from "../AppartementTypes.jsx";
 import axios from "axios";
 import { AppConsts } from "../Routes/AppConsts";
 import { ApiRoutes } from "../Routes/ApiRoutes";
 import { PageRoutes } from "../Routes/PageRoutes";
+import { set } from "date-fns";
 
 axios.defaults.baseURL = AppConsts.ServerAddress;
 
 export default function PlacesFormPage() {
-  // const {id} = useParams();
+   const {id} = useParams();
   const [title, setTitle] = useState('');
   const [wilaya, setWilaya] = useState('');
   const [comun, setComun] = useState('');
@@ -28,24 +29,27 @@ export default function PlacesFormPage() {
   const [price, setPrice] = useState(100);
  
   const [redirect, setRedirect] = useState(false);
-  /* useEffect(() => {
+  useEffect(() => {
      if (!id) {
        return;
      }
-     axios.get('/places/'+id).then(response => {
+     axios.get(ApiRoutes.GetPlaceById.replace("{id}", id)).then(response => {
         const {data} = response;
         setTitle(data.title);
-        setAddress(data.address);
+        setWilaya(data.wilaya);
+       setComun(data.comun);
+       setStreet(data.street)
         setAddedPhotos(data.photos);
         setDescription(data.description);
         setPerks(data.perks);
+        setApartementType(data.apartementType)
         setExtraInfo(data.extraInfo);
         setCheckIn(data.checkIn);
         setCheckOut(data.checkOut);
         setMaxGuests(data.maxGuests);
         setPrice(data.price);
      });
-   }, [id]);*/
+   }, [id]); 
   function inputHeader(text) {
     return (
       <h2 className="text">{text}</h2>
@@ -117,19 +121,35 @@ export default function PlacesFormPage() {
 
 
   //////get user id///////////
+  const owner = AppConsts.GetUserId()
 
   //const {id} = 
   async function savePlace(ev) {
    
    ev.preventDefault();
 
-    const owner = GetUserId()
+    if (id) {
+    // update
+    await axios.put(ApiRoutes.AddPlace, {
+      id,
+      owner,
+      title, wilaya, comun, street, addedPhotos,
+      description, perks,apartementType,extraInfo,
+      checkIn, checkOut, maxGuests, price
+    });
+    setRedirect(true);
+  } else {
+    // new place
+    
     await axios.post(ApiRoutes.AddPlace, {owner,
       title, wilaya, comun, street, addedPhotos,
       description, perks,apartementType,extraInfo,
       checkIn, checkOut, maxGuests, price
     });
     setRedirect(true);
+  } 
+
+    
   }
 
   if (redirect) {
