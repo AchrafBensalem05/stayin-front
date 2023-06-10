@@ -12,7 +12,7 @@ import { PageRoutes } from './Routes/PageRoutes';
 import { Link, Navigate } from "react-router-dom";
 import { AppConsts } from './Routes/AppConsts';
 import { ApiRoutes } from './Routes/ApiRoutes';
-import { useNavigate } from "react-router-dom";
+
 
 
 
@@ -21,15 +21,6 @@ const NavBar = () => {
 
   const [notifications, setNotifications] = useState([]);
   const [displayNotifications, setDisplayNotifications] = useState(false);
-
-  const navigate = useNavigate();
-
-  const userId = AppConsts.GetUserId();
-
-  function SignOut() {
-    localStorage.setItem(AppConsts.JwtTokenKey, null);
-    navigate(PageRoutes.Home);
-  }
 
   async function OpenReservation(notification) {
     if (notification.not_read) {
@@ -54,7 +45,7 @@ const NavBar = () => {
     setDisplayNotifications(true);
 
     try {
-      var res = await fetch(AppConsts.ServerAddress + ApiRoutes.GetNotificationByUser.replace("{userid}", userId));
+      var res = await fetch(AppConsts.ServerAddress + ApiRoutes.GetNotificationByUser.replace("{userid}", AppConsts.GetUserId()));
       var body = await res.json();
       setNotifications(body);
 
@@ -81,9 +72,7 @@ const NavBar = () => {
   return (
     <Navbar bg="light" expand="lg" className='shadow-sm'>
       <Container className='fluid'>
-        <Link to={PageRoutes.Home}>
-        <Image src={logoo} alt="Image" className="xx" fluid />
-        </Link>
+       <Image src={logoo} alt="Image" className="xx" fluid />
 
         <Form className="d-flex">
 
@@ -98,12 +87,14 @@ const NavBar = () => {
             </div>
           </div>
 
-          <div className="nav-link me-3"><Link to={PageRoutes.AccountBookings}><h6 className="font-weight-bold">AccountBookings</h6></Link></div>
-          <div className="nav-link me-3"><Link to={PageRoutes.Search}><h6 className="font-weight-bold">Search</h6></Link></div>
-          <div className="nav-link me-3"><Link to={PageRoutes.UsersDashboard}><h6 className="font-weight-bold">UsersDashboard</h6></Link></div>
-          <div className="nav-link me-3"><Link to={PageRoutes.NewPlace}><h6 className="font-weight-bold">New Place</h6></Link></div>
-          <div className="nav-link me-3"><Link to={PageRoutes.ProfilePage}><h6 className="font-weight-bold">Profile</h6></Link></div>
 
+
+
+
+          <Nav.Link className="me-3"><Link to={PageRoutes.AccountBookings}><h6 className="font-weight-bold">AccountBookings</h6></Link></Nav.Link>
+          <Nav.Link className="me-3"><Link to={PageRoutes.Search}><h6 className="font-weight-bold">Search</h6></Link></Nav.Link>
+          <Nav.Link className="me-3"><Link to={PageRoutes.UsersDashboard}><h6 className="font-weight-bold">UsersDashboard</h6></Link></Nav.Link>
+          <Nav.Link className="me-3"><Link to={PageRoutes.NewPlace}><h6 className="font-weight-bold">New Place</h6></Link></Nav.Link>
 
         </Form>
 
