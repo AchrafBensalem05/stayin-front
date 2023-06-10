@@ -72,7 +72,7 @@ const NavBar = () => {
   return (
     <Navbar bg="light" expand="lg" className='shadow-sm'>
       <Container className='fluid'>
-        <Image src={logoo} alt="Image" className="xx" fluid />
+       <Image src={logoo} alt="Image" className="xx" fluid />
 
         <Form className="d-flex">
 
