@@ -1,10 +1,11 @@
 // import Header from "../Header.jsx"
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import IndexPage from "./IndexPage";
 import PlacesPage from "./IndexPage";
 import { AppConsts } from "../Routes/AppConsts";
 import { ApiRoutes } from "../Routes/ApiRoutes";
 import { useEffect, useState } from "react";
+import { PageRoutes } from "../Routes/PageRoutes";
 
 export default function ProfilePage() {
 
@@ -14,7 +15,8 @@ export default function ProfilePage() {
     var userid = null;
 
     const [pageState, setPageState] = useState({ imageChanged: false })
-
+    const navigate = useNavigate();
+    
     const defaultImage = "/assets/profile.svg";
 
     if (location.state) {
@@ -67,16 +69,17 @@ export default function ProfilePage() {
     }
 
     function EditPublication(publication) {
+        // navigate(PageRoutes.UpdatePlace.replace(":id", publication.Id))
         // TODO: not implemented
         console.log("editing", publication);
     }
 
     function OpenPublication(publication) {
-        // TODO: not implemented
-        console.log("opening", publication);
+        navigate(PageRoutes.PlaceById.replace(":id", publication.Id))
     }
 
     function OpenReservation(reservation) {
+
         // TODO: not implemented
         console.log("opening", reservation);
     }
