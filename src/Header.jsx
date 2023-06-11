@@ -81,7 +81,7 @@ const NavBar = () => {
   return (
     <Navbar bg="light" expand="lg" className='shadow-sm'>
       <Container className='fluid'>
-        <Image src={logoo} alt="Image" className="xx" fluid />
+        <Link to={PageRoutes.Home}><Image src={logoo} alt="Image" className="xx" fluid /></Link>
 
         <Form className="d-flex">
 
