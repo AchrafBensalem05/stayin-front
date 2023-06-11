@@ -94,8 +94,6 @@ export default function PlacePage() {
       </div>
       <div>
       <Button className="signin" > <Link  to={ PageRoutes.BookingById.replace(":id", id)} >Reserver</Link></Button> :
-
-       
       </div>
     </div>
    {/*  <h1 className="text-xl font-semibold"></h1> */}

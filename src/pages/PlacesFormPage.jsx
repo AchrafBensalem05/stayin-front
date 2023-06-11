@@ -224,7 +224,7 @@ export default function PlacesFormPage() {
 
         {preInput('Perks', 'select all the perks of your place')}
         <div className="">
-          <Perks selected={perks} onChange={setPerks} />
+          <Perks  selected={perks} onChange={setPerks} />
         </div>
      
         {preInput('Apartement Type', 'select your apartement type')}
