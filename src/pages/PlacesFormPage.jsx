@@ -24,7 +24,7 @@ export default function PlacesFormPage() {
   const [apartementType, setApartementType] = useState([]);
   const [extraInfo, setExtraInfo] = useState('');
   const [checkIn, setCheckIn] = useState('');
-  const [checkOut, setCheckOut] = useState('');
+  const [checkOut ,setCheckOut] = useState('');
   const [maxGuests, setMaxGuests] = useState(1);
   const [price, setPrice] = useState(100);
  
@@ -144,7 +144,7 @@ export default function PlacesFormPage() {
     await axios.post(ApiRoutes.AddPlace, {owner,
       title, wilaya, comun, street, addedPhotos,
       description, perks,apartementType,extraInfo,
-      checkIn, checkOut, maxGuests, price
+      checkOut, checkOut, maxGuests, price
     });
     setRedirect(true);
   } 
@@ -265,18 +265,18 @@ export default function PlacesFormPage() {
               <div class="col-12">
               <div className="p-6 border border-gray-300 sm:rounded-md flex flex-row ">
                 <label className="block mb-6">
-                  <span className="text-gray-700">Check in time</span>
+                  <span className="text-gray-700">Number of beds</span>
                   <div class="input-group mb-3">
-                      <input type="text"  value={checkIn}onChange={ev => setCheckIn(ev.target.value)} placeholder="14" class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
+                      <input type="text"  value={checkIn}onChange={ev => setCheckIn(ev.target.value)} placeholder="3" class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
                   </div>
                 </label>
             
             <div className="row">
               <div class="col-12">
                   <label className="block mb-6">
-                  <span className="text-gray-700">Check out time</span>
+                  <span className="text-gray-700">Number Of Bath Rooms</span>
                   <div class="input-group mb-3">
-                      <input type="text" value={checkOut} onChange={ev => setCheckOut(ev.target.value)}placeholder="11" class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
+                      <input type="text" value={checkOut} onChange={ev => setCheckOut(ev.target.value)}placeholder="2" class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
                   </div>
                 </label>
               </div>

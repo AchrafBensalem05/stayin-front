@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import { differenceInCalendarDays } from "date-fns";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
@@ -15,9 +15,9 @@ import reserve from "./images/reservation.jpg"
 export default function Booking() {
 
 
-  
+
   const user = AppConsts.GetUserId();
-  
+
 
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
@@ -30,21 +30,21 @@ export default function Booking() {
   const [price, setPrice] = useState('');
 
 
- /*  const [socket, setSocket] = useState(); 
- 
-  useEffect(() => { 
-    setSocket(io("http://localhost:8800")); 
-  }, []); 
- 
- 
+  /*  const [socket, setSocket] = useState(); 
   
-  useEffect(() => { 
-      socket?.on('customEvent', (data) => {
-      console.log('Received custom event:', data);
-  }, [socket])
-}
-  );
- */
+   useEffect(() => { 
+     setSocket(io("http://localhost:8800")); 
+   }, []); 
+  
+  
+   
+   useEffect(() => { 
+       socket?.on('customEvent', (data) => {
+       console.log('Received custom event:', data);
+   }, [socket])
+ }
+   );
+  */
   const queryParameters = new URLSearchParams(window.location.search)
   // const AppartementId = queryParameters.get("id") 
   const { id } = useParams();
@@ -73,7 +73,7 @@ export default function Booking() {
     console.log(numberOfNights)
   }
 
- 
+
   /* try {
     
     axios.get(ApiRoutes.GetAppartementById.replace("{id}", id)).then(async (response) => {
@@ -97,15 +97,15 @@ export default function Booking() {
   } catch (error) {
 
   } */
-     useEffect(() => { 
- 
-  
-    
+  useEffect(() => {
+
+
+
     axios.get(ApiRoutes.GetAppartementById.replace("{id}", id)).then(async (response) => {
       setAppartement(response.data)
       console.log(appartement)
       const reservedDates = await appartement.reservedDates;
-     // console.log("reserve"+reservedDates);
+      // console.log("reserve"+reservedDates);
       setPrice(numberOfNights * appartement.price);
       /*  for (let i = 0; i < reservedDates.length; i++) {
            const date=new Date(reservedDates[i])
@@ -114,30 +114,30 @@ export default function Booking() {
        };  */
       console.log(price)
       setReservedDates(reservedDates);
-    //  console.log("appartement"+appartement)
-   
+      //  console.log("appartement"+appartement)
+
     });
-     }, []);
-   
-
-   const reservedDate = appartement.reservedDates;
-    console.log(reservedDate);
-   
-
-  
-
-    
+  }, []);
 
 
-    if (reservedDate) {
-      var dateObjects = reservedDate.map((reservedDate) => new Date(reservedDate));
-     // console.log(dateObjects);
-  
-    } else {
-      console.log("The dates array is undefined.");
-    }
+  const reservedDate = appartement.reservedDates;
+  console.log(reservedDate);
 
-    console.log(dateObjects);
+
+
+
+
+
+
+  if (reservedDate) {
+    var dateObjects = reservedDate.map((reservedDate) => new Date(reservedDate));
+    // console.log(dateObjects);
+
+  } else {
+    console.log("The dates array is undefined.");
+  }
+
+  console.log(dateObjects);
   /*   const isDateDisabled = (date) => {
       return reservedDates.includes(date);
     }; */
@@ -145,8 +145,8 @@ export default function Booking() {
 
 
   async function bookThisPlace() {
-    const user=AppConsts.GetUserId()
-    
+    const user = AppConsts.GetUserId()
+
     setIsLoading(true);
 
     try {
@@ -158,13 +158,13 @@ export default function Booking() {
         name: name,
         phone: phone,
         email: email,
-        price: (numberOfNights+1) * appartement.price,
+        price: (numberOfNights + 1) * appartement.price,
         user: user,
         reserved: false,
         //  reservedDates:["2023-05-03" , "2023-05-04", "2023-05-05"],
 
 
-      
+
 
       });
       const bookingId = response.data._id;
@@ -186,90 +186,91 @@ export default function Booking() {
 
 
   console.log(new Date('2023-06-12'));
- 
+
 
   return (
-    
-   
-<div>
-  <div className="h-screen flex relative justify-end">
-    <div className="w-1/2 h-full absolute top-0 left-0">
-      <img src={reserve} alt="" className="h-full w-full object-cover" />
-      <div className="h-full w-full absolute top-0 left-0 bg-black opacity-50"></div>
-      <div className="h-full w-full absolute top-0 left-0 flex flex-col items-center justify-center">
-        <div className="text-white text-5xl font-semibold mb-4">Discover a Beautiful Contest</div>
-        <div className="text-white text-3xl font-semibold">Rooms Starting from <strong>{appartement.price} $</strong> per night</div>
+
+
+    <div>
+      <div className="h-screen flex relative justify-end">
+        <div className="w-1/2 h-full absolute top-0 left-0">
+          <img src={reserve} alt="" className="h-full w-full object-cover" />
+          <div className="h-full w-full absolute top-0 left-0 bg-black opacity-50"></div>
+          <div className="h-full w-full absolute top-0 left-0 flex flex-col items-center justify-center">
+            <div className="text-white text-5xl font-semibold mb-4">Discover a Beautiful Contest</div>
+            <div className="text-white text-3xl font-semibold">Rooms Starting from <strong>{appartement.price} $</strong> per night</div>
+          </div>
+        </div>
+
+
+
+        <div className=" flex items-center mx-20 mt-20 ">
+
+          <form class="w-full max-w-lg">
+
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div className=" py-4 px-4 ml-32 border-t ">
+
+                <DateRange
+                  editableDateInputs={true}
+                  onChange={(item) => setDate([item.selection])}
+                  moveRangeOnFirstSelection={false}
+                  ranges={date}
+                  disabledDates={dateObjects}
+
+                  // disabledDates={[new Date('2023-06-20'), new Date('2023-06-21')]}
+                  className="date"
+                  minDate={new Date()}
+                />
+              </div>
+
+              <div class="w-full px-3 flex items-center border-b border-teal-500 py-2">
+
+
+                <input type="text" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Full name"
+                  value={name}
+                  onChange={ev => setName(ev.target.value)} />
+              </div>
+
+              <div class="w-full px-3 flex items-center border-b border-teal-500 py-2">
+
+                <input type="number" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Number of guests"
+                  value={numberOfGuests} onChange={ev => setNumberOfGuests(ev.target.value)} />
+              </div>
+
+              <div class="w-full px-3 flex items-center border-b border-teal-500 py-2">
+
+                <input type="number" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Phone Number"
+                  value={phone}
+                  onChange={ev => setPhone(ev.target.value)} />
+              </div>
+
+              <div class="w-full px-3 flex items-center border-b border-teal-500 py-2">
+                <input type="email" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Email"
+                  value={email}
+                  onChange={ev => setEmail(ev.target.value)} />
+              </div>
+
+            </div>
+            
+            <button onClick={bookThisPlace} className="bg-[#02b4c4] hover:bg-[#02b4c4] ml-40 text-white font-bold py-2 px-4 rounded" disabled={isLoading}>
+              Book this place
+              <ToastContainer />
+              {numberOfNights > 0 && (
+
+                <span>$ {appartement.price * numberOfNights}</span>
+              )
+              }
+            </button>
+
+          </form>
+
+        </div>
+
+
       </div>
-    </div>
-
-
-
-<div className=" flex items-center mx-40">
-      
-<form class="w-full max-w-lg">
-  
-  <div class="flex flex-wrap -mx-3 mb-6">
-  <div className=" py-4 px-4 ml-32 border-t ">
-           
-           <DateRange
-             editableDateInputs={true}
-             onChange={(item) => setDate([item.selection])}
-             moveRangeOnFirstSelection={false}
-             ranges={date}
-             disabledDates={dateObjects}
-
-           // disabledDates={[new Date('2023-06-20'), new Date('2023-06-21')]}
-             className="date"
-             minDate={new Date()}
-           />
-         </div>
-
-    <div class="w-full px-3 flex items-center border-b border-teal-500 py-2">
-
-  
-       <input type="text" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"  placeholder="Full name" 
-        value={name}
-        onChange={ev => setName(ev.target.value)} />
-    </div>
-
-    <div class="w-full px-3 flex items-center border-b border-teal-500 py-2">
-       
-    <input type="number" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"  placeholder="Number of guests" 
-             value={numberOfGuests} onChange={ev => setNumberOfGuests(ev.target.value)} />
-    </div>
-
-    <div class="w-full px-3 flex items-center border-b border-teal-500 py-2">
-      
-    <input type="number" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"  placeholder="Phone Number" 
-               value={phone}
-               onChange={ev => setPhone(ev.target.value)}  />
-    </div>
-
-    <div class="w-full px-3 flex items-center border-b border-teal-500 py-2">
-    <input type="email" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"  placeholder="Email" 
-               value={email}
-               onChange={ev => setEmail(ev.target.value)}  />
-    </div>
-
-  </div>
-  <button onClick={bookThisPlace} className="bg-[#02b4c4] hover:bg-[#02b4c4] ml-40 text-white font-bold py-2 px-4 rounded" disabled={isLoading}>
-          Book this place
-          <ToastContainer />
-          {numberOfNights > 0 && (
-
-            <span>$ {appartement.price * numberOfNights}</span>
-          )
-          }
-        </button>
-  
-</form>
 
     </div>
-    
-
-  </div>
- 
-</div>
 
 
 
@@ -278,9 +279,9 @@ export default function Booking() {
 
 
 
-      
 
-   
+
+
 
 
 
@@ -299,11 +300,11 @@ export default function Booking() {
       </div> 
      </div>  */}
 
-  
 
 
-      
-      {/* <div className="bg-white py-32 px-64 shadow  rounded-2xl" >
+
+
+{/* <div className="bg-white py-32 px-64 shadow  rounded-2xl" >
       <div>
         <p className="text-center text-blue-700 text-base"> Reservation request</p> 
         </div>
