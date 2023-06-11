@@ -135,6 +135,7 @@ function Home() {
                                         <option value="">Select Wilaya</option>
                                         <option value="alger">Alger</option>
                                         <option value="batna">Batna</option>
+                                        <option value="tipaza">Tipaza</option>
                                     </select>
                                 </div>
                             </div>
@@ -155,6 +156,7 @@ function Home() {
                                             <>
                                                 <option value="bab-zouar">Bab Zouar</option>
                                                 <option value="zeralda">Zeralda</option>
+                                                <option value="cherraga">Cherraga</option>
                                             </>
                                         )}
                                         {selectedWilaya === 'batna' && (
@@ -163,6 +165,13 @@ function Home() {
                                                 <option value="ichemoul">Ichemoul</option>
                                             </>
                                         )}
+                                        {selectedWilaya === 'tipaza' && (
+                                                                <>
+                                                                    <option value="gouraya">Gouraya</option>
+                                                                    <option value="cherchell">Cherchell</option>
+                                                                    <option value="kolean">Kolea</option>
+                                                                </>
+                                                            )}
                                     </select>
                                 </div>
                             </div>
@@ -301,14 +310,14 @@ function Home() {
                                             <div class="row">
                                                 <div class="col-sm">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input value="dryer" type="checkbox" checked={perks.includes('dryer')} onChange={handlePerksChange} name="perks[]" class="custom-control-input" id="customCheck1" />
-                                                        <label class="custom-control-label" for="customCheck1">dryer</label>
+                                                        <input value="parking" type="checkbox" checked={perks.includes('parking')} onChange={handlePerksChange} name="perks[]" class="custom-control-input" id="customCheck1" />
+                                                        <label class="custom-control-label" for="customCheck1">parking</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" value="kitchen" checked={perks.includes('kitchen')} onChange={handlePerksChange} name="perks[]" class="custom-control-input" id="customCheck1" />
-                                                        <label class="custom-control-label" for="customCheck1">kitchen</label>
+                                                        <input type="checkbox" value="pets" checked={perks.includes('pets')} onChange={handlePerksChange} name="perks[]" class="custom-control-input" id="customCheck1" />
+                                                        <label class="custom-control-label" for="customCheck1">pets</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -325,6 +334,7 @@ function Home() {
                                                             <option value="">Select Wilaya</option>
                                                             <option value="alger">Alger</option>
                                                             <option value="batna">Batna</option>
+                                                            <option value="tipaza">Tipaza</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -343,12 +353,20 @@ function Home() {
                                                                 <>
                                                                     <option value="bab-zouar">Bab Zouar</option>
                                                                     <option value="zeralda">Zeralda</option>
+                                                                    <option value="cherrage">Cherraga</option>
                                                                 </>
                                                             )}
                                                             {selectedWilaya === 'batna' && (
                                                                 <>
                                                                     <option value="arris">Arris</option>
                                                                     <option value="ichemoul">Ichemoul</option>
+                                                                </>
+                                                            )}
+                                                            {selectedWilaya === 'tipaza' && (
+                                                                <>
+                                                                    <option value="gouraya">Gouraya</option>
+                                                                    <option value="cherchell">Cherchell</option>
+                                                                    <option value="kolean">Kolea</option>
                                                                 </>
                                                             )}
                                                         </select>

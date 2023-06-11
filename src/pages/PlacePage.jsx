@@ -14,7 +14,6 @@ import ImageCarousel from '../Carousel';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Footer from "../Footer";
-import { PageRoutes } from "../Routes/PageRoutes";
 
 import Button from 'react-bootstrap/Button';
 
@@ -84,19 +83,12 @@ export default function PlacePage() {
   return (
     <div class="">
     <div className="relative overflow-hidden mt-18 mx-auto px-20">
-     
-   <div className="flex justify-between">
-    <div>
       <div class="flex items-center">
         <h1 class="text-4xl ">{place.title}</h1>
         <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
       </div>
       <AddressLink>{place.wilaya} - {place.comun}- {place.street}</AddressLink>
-      </div>
-       <div>
-        <Button  className="signin"> <Link to={PageRoutes.BookingById.replace(":id", id)}>Reserver</Link> </Button>
-       </div>
-       </div>
+
    {/*  <h1 className="text-xl font-semibold"></h1> */}
    <div class="flex space-x-4 px-40 ">
     <Image class="w-150  hover:scale-100 transition-all duration-300 mr-6" src={place.photos?.[0]} alt="" />
@@ -111,7 +103,7 @@ export default function PlacePage() {
           <h2 className="font-semibold text-2xl my-4 ">Exrta Informations</h2>
           <p>{place.extraInfo}</p>
        </div>
-    <Image class="w-150  hover:scale-100 transition-all duration-300 mr-6" src={place.photos?.[2]} alt="" />
+    <Image class="w-150  hover:scale-100 transition-all duration-300 mr-6" src={place.photos?.[1]} alt="" />
     
     </div>
    {/*  <PlaceGallery place={place} /> */}

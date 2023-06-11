@@ -1,6 +1,5 @@
 //import PhotosUploader from "../PhotosUploader.jsx";
 import { useState ,useEffect} from "react";
-import Header from "../Header.jsx"
 import { Navigate , useParams } from "react-router-dom";
 import Perks from "../Perks.jsx";
 import AppartementTypes from "../AppartementTypes.jsx";
@@ -8,7 +7,6 @@ import axios from "axios";
 import { AppConsts } from "../Routes/AppConsts";
 import { ApiRoutes } from "../Routes/ApiRoutes";
 import { PageRoutes } from "../Routes/PageRoutes";
-import { set } from "date-fns";
 
 axios.defaults.baseURL = AppConsts.ServerAddress;
 
@@ -163,10 +161,8 @@ export default function PlacesFormPage() {
       <div className="container xxxx">
       <h1 className="mt-4 List">List your apartements</h1>
       <form onSubmit={savePlace}>
-        {preInput('Title', 'Title for your place. should be short and catchy as in advertisement')}
-        <input type="text" value={title} onChange={ev => setTitle(ev.target.value)} placeholder="title, for example: My lovely apt" />
         <div class="input-group mb-3">
-              <input type="text" value={title} onChange={ev => setTitle(ev.target.value)} placeholder="title, for example: My lovely apt" class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
+              <input type="text" value={title} required onChange={ev => setTitle(ev.target.value)} placeholder="title, for example: My lovely apt" class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
          </div>
         {preInput('Address', 'specify your exact address')}
 
@@ -175,7 +171,7 @@ export default function PlacesFormPage() {
           <label className="block mb-6">
             <span className="text-gray-700">Wilaya</span>
             <div class="input-group mb-3">
-              <input type="text"  name="Wilaya"  placeholder="wilaya" value={wilaya} onChange={ev => setWilaya(ev.target.value)} class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
+              <input type="text" required name="Wilaya"  placeholder="wilaya" value={wilaya} onChange={ev => setWilaya(ev.target.value)} class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
             </div>
           </label>
 
@@ -183,13 +179,13 @@ export default function PlacesFormPage() {
             <span className="text-gray-700">commune</span>
             
              <div class="input-group mb-3">
-              <input type="text"  name="comune"   placeholder="commune" value={comun} onChange={ev => setComun(ev.target.value)} class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
+              <input type="text"  name="comune" required  placeholder="commune" value={comun} onChange={ev => setComun(ev.target.value)} class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
             </div>
           </label>
           <label className="block mb-6">
             <span className="text-gray-700">Street</span>
             <div class="input-group mb-3">
-              <input type="text"  name="street"   placeholder="street" value={street} onChange={ev => setStreet(ev.target.value)}  class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
+              <input type="text"  name="street" required  placeholder="street" value={street} onChange={ev => setStreet(ev.target.value)}  class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
             </div>
           </label>
 
@@ -213,7 +209,7 @@ export default function PlacesFormPage() {
           ))}
 
           <label className=" m-1 h-32 cursor-pointer flex items-center gap-1 justify-center border bg-transparent rounded-2xl text-2xl text-gray-600">
-            <input type="file" multiple className="hidden" onChange={uploadPhoto} />
+            <input type="file" multiple className="hidden"required onChange={uploadPhoto} />
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
             </svg>
@@ -223,12 +219,12 @@ export default function PlacesFormPage() {
         </div>
 
         {preInput('Description', 'description of the place')}
-        <textarea class="form-control" value={description} onChange={ev => setDescription(ev.target.value)} rows="30"></textarea>
+        <textarea class="form-control" required value={description} onChange={ev => setDescription(ev.target.value)} rows="30"></textarea>
 
 
         {preInput('Perks', 'select all the perks of your place')}
         <div className="">
-          <Perks selected={perks} onChange={setPerks} />
+          <Perks  selected={perks} onChange={setPerks} />
         </div>
      
         {preInput('Apartement Type', 'select your apartement type')}
@@ -237,7 +233,7 @@ export default function PlacesFormPage() {
         </div>
 
         {preInput('Extra info', 'house rules, etc')}
-        <textarea class="form-control mt-3" value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)} rows="30"></textarea>
+        <textarea class="form-control mt-3" required value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)} rows="30"></textarea>
         {preInput('Check in&out times', 'add check in and out times, remember to have some time window for cleaning the room between guests')}
         <div className="" >
           {/*
@@ -267,7 +263,7 @@ export default function PlacesFormPage() {
                 <label className="block mb-6">
                   <span className="text-gray-700">Number of beds</span>
                   <div class="input-group mb-3">
-                      <input type="text"  value={checkIn}onChange={ev => setCheckIn(ev.target.value)} placeholder="3" class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
+                      <input type="text" required value={checkIn}onChange={ev => setCheckIn(ev.target.value)} placeholder="14" class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
                   </div>
                 </label>
             
@@ -276,7 +272,7 @@ export default function PlacesFormPage() {
                   <label className="block mb-6">
                   <span className="text-gray-700">Number Of Bath Rooms</span>
                   <div class="input-group mb-3">
-                      <input type="text" value={checkOut} onChange={ev => setCheckOut(ev.target.value)}placeholder="2" class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
+                      <input type="text" required value={checkOut} onChange={ev => setCheckOut(ev.target.value)}placeholder="11" class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
                   </div>
                 </label>
               </div>
@@ -286,7 +282,7 @@ export default function PlacesFormPage() {
                   <label className="block mb-6">
                   <span className="text-gray-700">Max number of guests</span>
                   <div class="input-group mb-3">
-                      <input type="text" value={maxGuests} onChange={ev => setMaxGuests(ev.target.value)} placeholder="11" class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
+                      <input type="text" required value={maxGuests} onChange={ev => setMaxGuests(ev.target.value)} placeholder="11" class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
                   </div>
                 </label>
               </div>
@@ -302,7 +298,7 @@ export default function PlacesFormPage() {
             <label className="block mb-6">
               <span className="text-gray-700">Price per night</span>
                    <div class="input-group mb-3">
-                      <input type="text"  value={price} onChange={ev => setPrice(ev.target.value)} placeholder="11" class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
+                      <input type="text" required  value={price} onChange={ev => setPrice(ev.target.value)} placeholder="11" class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
                 </div>
             </label>
             </div>
