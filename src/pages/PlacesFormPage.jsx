@@ -1,6 +1,5 @@
 //import PhotosUploader from "../PhotosUploader.jsx";
 import { useState ,useEffect} from "react";
-import Header from "../Header.jsx"
 import { Navigate , useParams } from "react-router-dom";
 import Perks from "../Perks.jsx";
 import AppartementTypes from "../AppartementTypes.jsx";
@@ -8,7 +7,6 @@ import axios from "axios";
 import { AppConsts } from "../Routes/AppConsts";
 import { ApiRoutes } from "../Routes/ApiRoutes";
 import { PageRoutes } from "../Routes/PageRoutes";
-import { set } from "date-fns";
 
 axios.defaults.baseURL = AppConsts.ServerAddress;
 
@@ -163,8 +161,7 @@ export default function PlacesFormPage() {
       <div className="container xxxx">
       <h1 className="mt-4 List">List your apartements</h1>
       <form onSubmit={savePlace}>
-        {preInput('Title', 'Title for your place. should be short and catchy as in advertisement')}
-        <input type="text" value={title} onChange={ev => setTitle(ev.target.value)} placeholder="title, for example: My lovely apt" />
+        <input required type="text" value={title} onChange={ev => setTitle(ev.target.value)} placeholder="title, for example: My lovely apt" />
         <div class="input-group mb-3">
               <input type="text" value={title} onChange={ev => setTitle(ev.target.value)} placeholder="title, for example: My lovely apt" class="form-control"  aria-label="Enter your input" aria-describedby="minimum-text"/>
          </div>
